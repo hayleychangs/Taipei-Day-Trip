@@ -6,8 +6,8 @@ dbconfig={
     "host":"localhost",
     "port":"3306",
     "database":"taipei_day_trip",
-    "user":"root",
-    "password":"1234",
+    "user":"eureka",
+    "password":MySQLPassword(),
 }
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "mypool",
                                                       pool_size = 10,
@@ -83,24 +83,6 @@ def get_attractions(pagenumber):
         val=(start_index, 12)
         mycursor.execute(sql, val)
         data=mycursor.fetchall()
-        # result=[]
-        
-        # for each_data in data:
-        #     images=[]
-        #     images.append(each_data[9])
-        #     image_list=images
-        #     attraction_infos={}
-        #     attraction_infos["id"]=each_data[0]
-        #     attraction_infos["name"]=each_data[1]
-        #     attraction_infos["category"]=each_data[2]
-        #     attraction_infos["description"]=each_data[3]
-        #     attraction_infos["address"]=each_data[4]
-        #     attraction_infos["transport"]=each_data[5]
-        #     attraction_infos["mrt"]=each_data[6]
-        #     attraction_infos["lat"]=each_data[7]
-        #     attraction_infos["lng"]=each_data[8]
-        #     attraction_infos["image"]=image_list
-        #     result.append(attraction_infos)
         if data==None:
             attractions_infos=None
             return jsonify({"data":attractions_infos})
@@ -135,24 +117,6 @@ def get_attractions_keyword_filtered(pagenumber, keyword): #both like & locate c
         val=(keyword, keyword, start_index, 12)
         mycursor.execute(sql, val)
         data=mycursor.fetchall()
-        # result=[]
-        
-        # for each_data in data:
-        #     images=[]
-        #     images.append(each_data[9])
-        #     image_list=images
-        #     attraction_infos={}
-        #     attraction_infos["id"]=each_data[0]
-        #     attraction_infos["name"]=each_data[1]
-        #     attraction_infos["category"]=each_data[2]
-        #     attraction_infos["description"]=each_data[3]
-        #     attraction_infos["address"]=each_data[4]
-        #     attraction_infos["transport"]=each_data[5]
-        #     attraction_infos["mrt"]=each_data[6]
-        #     attraction_infos["lat"]=each_data[7]
-        #     attraction_infos["lng"]=each_data[8]
-        #     attraction_infos["image"]=image_list
-        #     result.append(attraction_infos)
         if data==None:
             attractions_infos=None
             return jsonify({"data":attractions_infos})

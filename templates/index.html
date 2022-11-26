@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/index.css">
-    <title>臺北一日遊</title>
+    <title>台北一日遊</title>
 </head>
 <body>
     <header>
@@ -19,42 +19,29 @@
     </header>
     <main>
         <section class="section-banner wrapper">
-            <!-- 測試 -->
-            <!-- 測試  -->
             <div class="banner">
                 <div class="slogan" id="slogan">
                     <h2>輕鬆享受台北一日悠閒</h2>
                     <p>探索每個角落，體驗城市的深度旅遊行程 </p>
                 </div>
                 <div class="search-bar">
-                        <!-- <form class="search-text" id="search-text" method="get"> -->
                             <div class="input">
                             <input type="text" placeholder="輸入景點名稱查詢" name="keyword" id="keyword" class="input-click" onclick="showMenu()">
                             </div>
                             <button id="search-btn" type="submit">
                                 <img class="magnifier" src="/static/icon/search.png" alt="search">
-                            </button>
-                        <!-- </form> -->
-                        
+                            </button>   
                 </div>
                 <div class="categories-menu" id="categories-menu">
-                </div><!--分類區塊用css隱藏-->
+                </div>
             </div>
             <div class="welcome-img-container">
                 <img class="welcome-img" src="/static/icon/welcome_image.png" alt="welcome_image_taipei101" title="welcome_image_taipei101">
             </div>
         </section>
-        <section class="section-attractions-page0 wrapper" id="section-attractions-page0">
+        <section class="section-attractions" id="section-attractions">
         </section>
-
-        <!-- #js-infinite-wrap：js 要 insert 的地方-->
-        <section class="section-attractions-page1 wrapper" id="section-attractions-page1">
-        </section>
-
-        <!-- #js-detective 載入下一篇的觀察目標-->
-        <div id="js-detective"></div>
-        
-        <script type="text/javascript" src="/static/js/index.js"></script>
+        <button onclick="topFunction()" id="go-to-top" title="回到頂端">Top</button>
     </main>
     <footer>
         <div class="footer-content wrapper">
@@ -64,5 +51,6 @@
         </div>
         
     </footer>
+    <script type="text/javascript" src="/static/js/index.js"></script>
 </body>
 </html>
