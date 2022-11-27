@@ -2,9 +2,7 @@
 body{
     margin:0;
     font-family: "NOTO Sans TC", san-serif;
-    padding-top: 60px;
 }
-
 :root{
     --Light-Cyan:#66AABB;
     --Lighter-Cyan:#AADDEE;
@@ -16,24 +14,26 @@ body{
     --Gray:#666666;
     --light-Gray:rgb(191,191,191);
 }
-
 .wrapper{
     box-sizing: border-box;
     width:100%;
     max-width: 1920px;
     margin:0 auto;
 }
+header{
+    height: 54px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color:var(--White);
+}
 .header-content{
-    box-sizing: border-box; 
-    height:54px;    /*設計稿規格*/
-    width:100%;
+    width: 1200px;
+    height: 100%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 2;
-    background-color: var(--White);
 }
 .theme{
     width: 150px;
@@ -44,19 +44,11 @@ body{
     line-height: 34px;
     color:var(--Cyan);
     /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    margin-left: 350px;
 }
 .nav-item{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-right: 350px;
-    position: absolute;
     width: 175px;
     height: 34px;
-    right: 0px;
-    bottom: 0px;
     justify-content: space-between;
     color: var(--Gray);
 }
@@ -68,12 +60,11 @@ body{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-top: -6px;
 }
 .banner{
-    width: auto;
+    width: 1200px;
     height: 169px;
-    margin-left: 360px;
+    margin: auto;
     position: relative;
     top:75px;
     z-index: 1;
@@ -268,8 +259,11 @@ body{
     background-color:var(--Cyan);
   }
 @media screen and (max-width:1200px) and (min-width:600px){
+    header{
+        width: 100%;
+    }
     .header-content{
-        justify-content: space-between;
+        width: 100%;
     }
     .theme{
         margin-left: 10px;
@@ -279,6 +273,7 @@ body{
     }
     .banner{
         margin: auto;
+        padding-left: 10px;
     }
     .section-attractions{
         width: 90%;
@@ -300,8 +295,11 @@ body{
     }
 }
 @media screen and (max-width:600px) and (min-width:360px){
+    header{
+        width: 100%;
+    }
     .header-content{
-        justify-content: space-between;
+        width: 100%;
     }
     .theme{
         margin-left: 10px;

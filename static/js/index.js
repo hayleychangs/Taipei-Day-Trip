@@ -37,7 +37,13 @@ function createAttractions(attractionInfo){
         let mrtDiv=document.createElement("div");
             mrtDiv.className="attraction-mrt";
 
-        let mrtContent=document.createTextNode(attractionMrt);
+        if (attractionMrt!=null){    
+            let mrtContent=document.createTextNode(attractionMrt);
+            mrtDiv.appendChild(mrtContent);
+        }else{
+            let mrtContent=document.createTextNode("無");
+            mrtDiv.appendChild(mrtContent);
+        }
 
         let categoryDiv=document.createElement("div");
             categoryDiv.className="attraction-category";  
@@ -45,7 +51,6 @@ function createAttractions(attractionInfo){
         let categoryContent=document.createTextNode(attractionCategory);
             
         categoryDiv.appendChild(categoryContent);
-        mrtDiv.appendChild(mrtContent);
         infoDiv.appendChild(mrtDiv);
         infoDiv.appendChild(categoryDiv);
         nameDiv.appendChild(nameContent);
