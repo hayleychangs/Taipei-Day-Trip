@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <title>台北一日遊</title>
+</head>
+<body>
+    <header>
+        <div class="header-content wrapper">
+            <h2 class="theme">台北一日遊</h2>
+            <nav class="nav-item">
+                <div class="nav-item-text">預定行程</div>
+                <div class="nav-item-text">登入/註冊</div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="section-banner wrapper">
+            <div class="banner">
+                <div class="slogan" id="slogan">
+                    <h2>輕鬆享受台北一日悠閒</h2>
+                    <p>探索每個角落，體驗城市的深度旅遊行程 </p>
+                </div>
+                <div class="search-bar">
+                            <div class="input">
+                            <input type="text" placeholder="輸入景點名稱查詢" name="keyword" id="keyword" class="input-click" onclick="showMenu()">
+                            </div>
+                            <button id="search-btn" type="submit">
+                                <img class="magnifier" src="/static/icon/search.png" alt="search">
+                            </button>   
+                </div>
+                <div class="categories-menu" id="categories-menu">
+                </div>
+            </div>
+            <div class="welcome-img-container">
+                <img class="welcome-img" src="/static/icon/welcome_image.png" alt="welcome_image_taipei101" title="welcome_image_taipei101">
+            </div>
+        </section>
+        <section class="section-attractions" id="section-attractions">
+        </section>
+        <button onclick="topFunction()" id="go-to-top" title="回到頂端">Top</button>
+    </main>
+    <footer>
+        <div class="footer-content wrapper">
+            <div class="footer-text">
+                COPYRIGHT © 2021 台北一日遊
+            </div>
+        </div>
+        
+    </footer>
+    <script type="text/javascript" src="/static/js/index.js"></script>
+</body>
+</html>

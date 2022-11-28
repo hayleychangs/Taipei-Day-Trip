@@ -1,9 +1,16 @@
 from flask import jsonify, Flask,  request, render_template, redirect, session, url_for, jsonify, make_response
+from flask_cors import CORS
 from models import get_categories, get_attraction_by_id, get_attractions, get_attractions_keyword_filtered
 import json
-app=Flask(__name__)
+app=Flask(
+    __name__,
+    static_folder="static",
+    static_url_path="/static",
+)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+
+CORS(app)
 
 # Pages
 @app.route("/")
@@ -22,7 +29,7 @@ def thankyou():
 
 @app.route("/api/attractions", methods=["GET"])
 def api_attractions():
-	pagenumber_input=request.args.get("page")
+	pagenumber_input=request.args.get("page" ,"0")
 	keyword_input=request.args.get("keyword","")
 	if request.method=="GET":
 		try:
@@ -76,4 +83,4 @@ def api_categories():
         return error_response
 
 if __name__=="__main__":
-	app.run(host='0.0.0.0', port=3000)
+	app.run(host="0.0.0.0", port=3000)

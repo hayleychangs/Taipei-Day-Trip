@@ -72,43 +72,28 @@ def get_attractions(pagenumber):
     start_index=pagenumber*12
     try:
         cnx=cnxpool.get_connection()
-        mycursor=cnx.cursor()  
+        mycursor=cnx.cursor(dictionary=True)  
         
         sql_count="SELECT COUNT(table_id) FROM attractions"
         mycursor.execute(sql_count)
         count_result=mycursor.fetchone()
-        data_length=count_result[0]
+        data_length=count_result["COUNT(table_id)"]
         
         sql="SELECT attraction_id, name, category, description, address, transport, mrt, lat, lng, images FROM attractions order by table_id limit %s, %s"
         val=(start_index, 12)
         mycursor.execute(sql, val)
         data=mycursor.fetchall()
-        result=[]
-        
-        for each_data in data:
-            images=[]
-            images.append(each_data[9])
-            image_list=images
-            attraction_infos={}
-            attraction_infos["id"]=each_data[0]
-            attraction_infos["name"]=each_data[1]
-            attraction_infos["category"]=each_data[2]
-            attraction_infos["description"]=each_data[3]
-            attraction_infos["address"]=each_data[4]
-            attraction_infos["transport"]=each_data[5]
-            attraction_infos["mrt"]=each_data[6]
-            attraction_infos["lat"]=each_data[7]
-            attraction_infos["lng"]=each_data[8]
-            attraction_infos["image"]=image_list
-            result.append(attraction_infos)
-        
-        if pagenumber==0:
-            next_page=1
-        elif pagenumber<data_length//12:
-            next_page=pagenumber+1
+        if data==None:
+            attractions_infos=None
+            return jsonify({"data":attractions_infos})
         else:
-            next_page=None
-        return jsonify({"data":result, "nextPage":next_page})
+            if pagenumber==0:
+                next_page=1
+            elif pagenumber<data_length//12:
+                next_page=pagenumber+1
+            else:
+                next_page=None
+            return jsonify({"data":data, "nextPage":next_page})
     except:
         print("Unexpected Error")
     finally:
@@ -120,44 +105,29 @@ def get_attractions_keyword_filtered(pagenumber, keyword): #both like & locate c
     start_index=pagenumber*12
     try:
         cnx=cnxpool.get_connection()
-        mycursor=cnx.cursor()
+        mycursor=cnx.cursor(dictionary=True)
             
         sql_count="SELECT COUNT(table_id) FROM attractions WHERE category=%s OR LOCATE(%s, name)>0"
         val_count=(keyword, keyword)
         mycursor.execute(sql_count, val_count)
         count_result=mycursor.fetchone()
-        data_length=count_result[0]
+        data_length=count_result["COUNT(table_id)"]
         
         sql="SELECT attraction_id, name, category, description, address, transport, mrt, lat, lng, images FROM attractions WHERE category=%s OR LOCATE(%s, name)>0 limit %s, %s"
         val=(keyword, keyword, start_index, 12)
         mycursor.execute(sql, val)
         data=mycursor.fetchall()
-        result=[]
-        
-        for each_data in data:
-            images=[]
-            images.append(each_data[9])
-            image_list=images
-            attraction_infos={}
-            attraction_infos["id"]=each_data[0]
-            attraction_infos["name"]=each_data[1]
-            attraction_infos["category"]=each_data[2]
-            attraction_infos["description"]=each_data[3]
-            attraction_infos["address"]=each_data[4]
-            attraction_infos["transport"]=each_data[5]
-            attraction_infos["mrt"]=each_data[6]
-            attraction_infos["lat"]=each_data[7]
-            attraction_infos["lng"]=each_data[8]
-            attraction_infos["image"]=image_list
-            result.append(attraction_infos)
-        
-        if data_length<12:
-                next_page=None
-        elif data_length-((pagenumber+1)*12)>0:
-            next_page=pagenumber+1
+        if data==None:
+            attractions_infos=None
+            return jsonify({"data":attractions_infos})
         else:
-            next_page=None
-        return jsonify({"data":result, "nextPage":next_page})
+            if data_length<12:
+                    next_page=None
+            elif data_length-((pagenumber+1)*12)>0:
+                next_page=pagenumber+1
+            else:
+                next_page=None
+            return jsonify({"data":data, "nextPage":next_page})
     except:
         print("Unexpected Error")
     finally:
