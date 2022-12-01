@@ -8,7 +8,7 @@ dbconfig={
     "port":"3306",
     "database":"taipei_day_trip",
     "user":"eureka",
-    "password":"MySQLPassword()",
+    "password":MySQLPassword(),
 }
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "mypool",
                                                       pool_size = 10,
