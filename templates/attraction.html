@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/attraction.css">
+    <title>景點資訊</title>
+</head>
+<body>
+    <header>
+        <div class="header-content wrapper">
+            <a href="/">
+                <h2 class="theme">台北一日遊</h2>
+            </a>
+            <nav class="nav-item">
+                <div class="nav-item-text">預定行程</div>
+                <div class="nav-item-text">登入/註冊</div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="img-and-proflie wrapper">
+            <div class="slideshow-container">
+                <div class="dots"></div>
+                <a class="prev" onclick="plusSlides(-1)"></a>
+                <a class="next" onclick="plusSlides(1)"></a>
+            </div>
+            <div class="profile">
+                <div class="attraction-briefinfo">
+                    <div class="attraction-name">
+                        <h3 class="name"></h3>
+                    </div>
+                    <div class="briefinfo-box">
+                        <span class="category"></span> at <span class="mrt"></span>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <div class="form-text">
+                        <div class="form-title">訂購導覽行程</div>
+                        <div class="form-content">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+                    </div>
+                    <div class="pick-date">選擇日期：
+                        <input type="date" placeholder="" value="">
+                   </div>
+                   <div class="pick-time">選擇時間：
+                        <div class="radio-box">
+                            <input type="radio" id="morning" name="time" value="上半天" checked>
+                            <label for="morning">上半天</label>
+                        </div>
+                        <div class="radio-box">
+                            <input type="radio" id="afternoon" name="time" value="下半天">
+                            <label for="afternoon">下半天</label>
+                        </div>
+                   </div>
+                   <div class="guide">
+                        <div class="guide-fee">導覽費用：</div>
+                        <div class="fee"></div>
+                   </div>
+                   <div class="btn-container">
+                        <button class="booking-btn" id="booking-btn" type="submit">開始預約行程</button>
+                    </div>
+                </div>
+            </div>     
+        </section>
+        <section class="attraction-infos wrapper">
+            <div class="description"></div>
+            <div class="address">景點地址:</div>
+            <div class="address-content"></div>
+            <div class="transport">交通方式:</div>
+            <div class="transport-content"></div>
+        </section>
+        <button onclick="topFunction()" id="go-to-top" title="回到頂端">Top</button>
+    </main>
+    <footer>
+        <div class="footer-content wrapper">
+            <div class="footer-text">
+                COPYRIGHT © 2022 台北一日遊
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="/static/js/attraction.js"></script>
+</body>
+</html>

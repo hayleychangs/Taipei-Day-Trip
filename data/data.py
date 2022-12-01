@@ -8,7 +8,7 @@ dbconfig={
     "port":"3306",
     "database":"taipei_day_trip",
     "user":"eureka",
-    "password":MySQLPassword(),
+    "password": MySQLPassword(),
 }
 
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "mypool",
@@ -25,10 +25,12 @@ attractions_list=data["result"]["results"]
 
 for infos in attractions_list:
     images_file=infos["file"].split("http")
-    result=""
+    result=[]   #""
     for images in images_file:
         if images[-3:] in ["jpg","JPG","PNG","png"]:
-            result+="http"+images+","
+            url="http"+images
+            result.append(url)
+    result=json.dumps(result) #json格式
     try:
         cnx=cnxpool.get_connection()
         mycursor=cnx.cursor()
