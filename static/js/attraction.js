@@ -122,7 +122,6 @@ function currentSlide(n){
 function showSlides(n){
     let i;
     let slides=document.getElementsByClassName("img-container");
-    console.log(slides)
     let dots=document.getElementsByClassName("dot");
     if (n>slides.length){
         slideIndex=1;
@@ -139,7 +138,6 @@ function showSlides(n){
     }
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
-    console.log("照片跳轉")
 }
 
 //pick time and show guide-fee
@@ -193,3 +191,17 @@ function topFunction(){
   document.body.scrollTop=0; // For Safari
   document.documentElement.scrollTop=0; // For Chrome, Firefox, IE and Opera
 }
+
+//image slide auto-play
+let timer;
+function setTimer(){
+    timer=setInterval(function(){
+        function plusSlides(n){
+            showSlides(slideIndex += 1);
+            prevN=1
+            changeEffect();
+        }
+        plusSlides();
+    }, 2000)
+}
+setTimer();

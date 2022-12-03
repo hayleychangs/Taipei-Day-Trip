@@ -137,7 +137,7 @@ a{
 }
 .go-right{
     animation-name: go-right;
-    animation-duration: 0.8s;
+    animation-duration: 1s;
 }
 @keyframes go-right{
     from {right: -5px;}
@@ -145,7 +145,7 @@ a{
 }
 .go-left{
     animation-name: go-left;
-    animation-duration: 0.8s;
+    animation-duration: 1s;
 }
 @keyframes go-left{
     from {left: -5px;}
@@ -209,8 +209,10 @@ a{
 .pick-date input[type="date"]{
     width: 160px;
     height: 25px;
+    padding-right: 10px;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 .pick-time{
     width: 93.3%;
@@ -242,6 +244,7 @@ label{
     height: 18px;
     border-radius: 50%;
     background-color:var(--White);
+    cursor: pointer;
 }
 .radio-box input[type="radio"]:checked:after{
     width: 14px;
@@ -280,6 +283,14 @@ label{
     align-items: center;
     margin-top: 20px;
     margin-left: 10px;
+}
+hr{
+    width: 1200px;
+    position: relative;
+    top: 40px;
+    border:0;
+    height: 1px;
+    background: var(--lighter-Gray);
 }
 .attraction-infos{
     width: 1200px;
@@ -438,6 +449,9 @@ label{
         font-size: 14px;
         margin-top: 15px;
     }
+    .pick-date input[type="date"]{
+        width: 140px;
+    }
     .pick-time{
         font-size: 14px;
         height: auto;
@@ -445,6 +459,7 @@ label{
         margin-top: 5px;
     }
     .radio-box{
+        width: 70px;
         height: auto;
         font-size: 14px;
     }
@@ -476,6 +491,9 @@ label{
         height: 26px;
         font-size: 14px;
     }
+    hr{
+        width: 90%;
+    }
     .attraction-infos{
         width: 90%;
         font-size: 14px;
@@ -499,7 +517,7 @@ label{
         margin-right: 10px;
     }
     .img-and-proflie{
-        width: 90%;
+        width: 100%;
         height: 700px;
         display: grid;
         grid-template-rows: 50% 50%;
@@ -509,7 +527,7 @@ label{
     }
     .slideshow-container{
         width: 100%;
-        height: 280px;
+        /* height: 280px; */
         margin-top: 5px;
         margin-left: 0px;
         margin-right: 0px;
@@ -518,15 +536,17 @@ label{
     .prev, .next{
         width: 28px;
         height: 28px;
-        top: 135px;
+        top: 210px;
     }
     .dot{
         width: 10px;
         height: 10px;
     }
     .profile{
-        width: 100%;
+        width: 95%;
         height: 260px;
+        margin-top: 140px;
+        margin-left: 9.5px;
         margin-right: 0px;
         margin-bottom: 180px;
     }
@@ -587,10 +607,14 @@ label{
         height: 26px;
         font-size: 16px;
     }
+    hr{
+        width: 90%;
+        top: 60px;
+    }
     .attraction-infos{
         width: 90%;
         font-size: 14px;
-        margin-top: 30px;
+        margin-top: 90px;
     }
     .description, .address, .address-content, .transport, .transport-content{
         margin-left: 5px;
