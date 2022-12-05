@@ -1,4 +1,5 @@
 import mysql.connector
+import json
 from mySQL import MySQLPassword
 from flask import jsonify
 
@@ -40,13 +41,10 @@ def get_attraction_by_id(attractionId):
         val=(attractionId,)
         mycursor.execute(sql, val)
         result=mycursor.fetchone()
-        images=[]
         if result==None:
             attraction_infos=None
             return jsonify({"data":attraction_infos})
         else:
-            images.append(result[9])
-            image_list=images
             attraction_infos={
                 "id":result[0],
                 "name":result[1],
@@ -57,7 +55,7 @@ def get_attraction_by_id(attractionId):
                 "mrt":result[6],
                 "lat":result[7],
                 "lng":result[8],
-                "images":image_list
+                "images":json.loads(result[9])
             }
             return jsonify({"data":attraction_infos})
     except:
@@ -65,7 +63,6 @@ def get_attraction_by_id(attractionId):
     finally:
         mycursor.close()
         cnx.close()
-
         
 def get_attractions(pagenumber):
     pagenumber=int(pagenumber)
@@ -83,6 +80,24 @@ def get_attractions(pagenumber):
         val=(start_index, 12)
         mycursor.execute(sql, val)
         data=mycursor.fetchall()
+        
+        result=[]
+        
+        for each_data in data:
+            each_data["images"]=json.loads(each_data["images"])  #turn to dic then..jsonify again
+            result.append({
+                "id":each_data["attraction_id"],
+                "name":each_data["name"],
+                "category":each_data["category"],
+                "description":each_data["description"],
+                "address":each_data["address"],
+                "transport":each_data["transport"],
+                "mrt":each_data["mrt"],
+                "lat":each_data["lat"],
+                "lng":each_data["lng"],
+                "images":each_data["images"]
+            })
+        
         if data==None:
             attractions_infos=None
             return jsonify({"data":attractions_infos})
@@ -93,7 +108,7 @@ def get_attractions(pagenumber):
                 next_page=pagenumber+1
             else:
                 next_page=None
-            return jsonify({"data":data, "nextPage":next_page})
+            return jsonify({"data":result, "nextPage":next_page})
     except:
         print("Unexpected Error")
     finally:
@@ -117,6 +132,24 @@ def get_attractions_keyword_filtered(pagenumber, keyword): #both like & locate c
         val=(keyword, keyword, start_index, 12)
         mycursor.execute(sql, val)
         data=mycursor.fetchall()
+        
+        result=[]
+        
+        for each_data in data:
+            each_data["images"]=json.loads(each_data["images"])  #turn to dic then..jsonify again
+            result.append({
+                "id":each_data["attraction_id"],
+                "name":each_data["name"],
+                "category":each_data["category"],
+                "description":each_data["description"],
+                "address":each_data["address"],
+                "transport":each_data["transport"],
+                "mrt":each_data["mrt"],
+                "lat":each_data["lat"],
+                "lng":each_data["lng"],
+                "images":each_data["images"]
+            })
+            
         if data==None:
             attractions_infos=None
             return jsonify({"data":attractions_infos})
@@ -127,7 +160,7 @@ def get_attractions_keyword_filtered(pagenumber, keyword): #both like & locate c
                 next_page=pagenumber+1
             else:
                 next_page=None
-            return jsonify({"data":data, "nextPage":next_page})
+            return jsonify({"data":result, "nextPage":next_page})
     except:
         print("Unexpected Error")
     finally:

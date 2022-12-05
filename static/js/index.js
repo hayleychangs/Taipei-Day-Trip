@@ -11,15 +11,19 @@ function createAttractions(attractionInfo){
         let attractionName=attractionInfo[i]["name"];
         let attractionMrt=attractionInfo[i]["mrt"];
         let attractionCategory=attractionInfo[i]["category"];
-        let attractionImage=attractionInfo[i]["images"].split(",", 1)[0];
+        let attractionImage=attractionInfo[i]["images"][0];
+     
+
+        let aTag=document.createElement("a");
+            aTag.href=`/attraction/${attractionInfo[i]["id"]}`;
+            document.querySelector(".section-attractions").appendChild(aTag);
 
         let attractionBox=document.createElement("div");
-            attractionBox.className="attraction";
-            document.querySelector(".section-attractions").appendChild(attractionBox);
+            attractionBox.className="attraction";       
         
         let imgDiv=document.createElement("div");
             imgDiv.className="img-container";        
-                
+
         let image=document.createElement("img");
             image.className="attraction-img";
             image.src=attractionImage;
@@ -41,7 +45,7 @@ function createAttractions(attractionInfo){
             let mrtContent=document.createTextNode(attractionMrt);
             mrtDiv.appendChild(mrtContent);
         }else{
-            let mrtContent=document.createTextNode("無");
+            let mrtContent=document.createTextNode("無捷運站");
             mrtDiv.appendChild(mrtContent);
         }
 
@@ -49,6 +53,7 @@ function createAttractions(attractionInfo){
             categoryDiv.className="attraction-category";  
 
         let categoryContent=document.createTextNode(attractionCategory);
+
             
         categoryDiv.appendChild(categoryContent);
         infoDiv.appendChild(mrtDiv);
@@ -58,6 +63,7 @@ function createAttractions(attractionInfo){
         attractionBox.appendChild(imgDiv);
         attractionBox.appendChild(nameDiv);
         attractionBox.appendChild(infoDiv);
+        aTag.appendChild(attractionBox);
     }
 }
 
@@ -254,7 +260,7 @@ function scrollFunction(){
   }
 }
 
-function topFunction() {
+function topFunction(){
   document.body.scrollTop=0; // For Safari
   document.documentElement.scrollTop=0; // For Chrome, Firefox, IE and Opera
 }

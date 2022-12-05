@@ -14,6 +14,9 @@ body{
     --Gray:#666666;
     --light-Gray:rgb(191,191,191);
 }
+a{
+    text-decoration: none;
+}
 .wrapper{
     box-sizing: border-box;
     width:100%;
@@ -49,6 +52,7 @@ header{
     display: flex;
     width: 175px;
     height: 34px;
+    margin-top: 15px;
     justify-content: space-between;
     color: var(--Gray);
 }
@@ -169,6 +173,13 @@ header{
     margin: auto;
     margin-top: 50px;
 }
+.section-attractions a{
+    width: 270px;
+    height: 242px;
+    margin: auto;
+    margin-bottom: 30px;
+    position: relative;
+}
 .attraction{
     width: 270px;
     height: 242px;
@@ -179,6 +190,11 @@ header{
     border-style: solid;
     border-width:0.01mm;
     border-color: var(--light-Gray);
+}
+.attraction a{
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
 }
 .img-container{
     width: 100%;
@@ -196,6 +212,7 @@ header{
     display: flex;
     align-items: center;
     font-size: 16px;
+    line-height: 18px;
     color: var(--White);
     background-color: var(--Black);
     opacity: 0.7;
@@ -281,6 +298,10 @@ header{
         display: grid;
         grid-template-columns: 50% 50%;
     }
+    .section-attractions a{
+        width: 90%;
+        height: 90%;
+    }
     .attraction{
         width: 90%;
         height: 90%;
@@ -350,6 +371,10 @@ header{
         margin: auto;
         display: flex;
         flex-direction: column;
+    }
+    .section-attractions a{
+        width: 322px;
+        height: 280px;
     }
     .attraction{
         width: 322px;
