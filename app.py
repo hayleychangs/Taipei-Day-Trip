@@ -1,6 +1,7 @@
 from flask import jsonify, Flask,  request, render_template, redirect, session, url_for, jsonify, make_response, Blueprint
 from flask_cors import CORS
-from view.attraction import attraction_api
+from route.attraction import attraction_api
+from route.member import member_api
 
 app=Flask(
     __name__,
@@ -28,6 +29,7 @@ def thankyou():
 	return render_template("thankyou.html")
 
 app.register_blueprint(attraction_api)
+app.register_blueprint(member_api)
 
 if __name__=="__main__":
 	app.run(host='0.0.0.0', port=3000)

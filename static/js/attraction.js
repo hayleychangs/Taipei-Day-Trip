@@ -1,6 +1,8 @@
 let path=location.pathname;
 let id=path.split("/")[2];
-let main=document.querySelector("main");
+let imgAndProfile=document.querySelector(".img-and-proflie");
+let attractionInfos=document.querySelector(".attraction-infos");
+let hr=document.querySelector(".hr");
 let slideIndex=1;
 let prevN=0
 
@@ -16,14 +18,17 @@ let getData=()=>{
     })
     .then((response)=>{
         if(!response.ok){
-            main.innerHTML="";
+            stopAutoPlay();
+            imgAndProfile.innerHTML="";
+            attractionInfos.innerHTML="";
+            hr.style.display="none";
             errorMsg=`
                 <div class="error-msg-box">
                     <div class="error-msg">哎呀，查無景點資訊!</div>
                     <a href="/">回到首頁，看看其他景點吧～</a>
                 </div>
             `
-            main.insertAdjacentHTML("afterbegin", errorMsg)
+            imgAndProfile.insertAdjacentHTML("afterbegin", errorMsg)
             throw new Error("response.statusText");
         }else{
             return response.json()
@@ -193,15 +198,28 @@ function topFunction(){
 }
 
 //image slide auto-play
-let timer;
-function setTimer(){
-    timer=setInterval(function(){
-        function plusSlides(n){
-            showSlides(slideIndex += 1);
-            prevN=1
-            changeEffect();
-        }
-        plusSlides();
-    }, 2000)
+// let timer;
+// function setTimer(){
+//     timer=setInterval(function(){
+//         function plusSlides(n){
+//             showSlides(slideIndex += 1);
+//             prevN=1
+//             changeEffect();
+//         }
+//         plusSlides();
+//     }, 2000)
+// }
+
+
+var myTimer=setInterval(function(){
+    function plusSlides(n){
+        showSlides(slideIndex += 1);
+        prevN=1
+        changeEffect();
+    }
+    plusSlides();
+}, 2000)
+
+function stopAutoPlay(){
+    clearInterval(myTimer);
 }
-setTimer();

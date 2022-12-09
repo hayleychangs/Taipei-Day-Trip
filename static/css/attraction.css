@@ -2,6 +2,7 @@
 body{
     margin:0;
     font-family: "NOTO Sans TC", san-serif;
+    height: 100vh;
 }
 :root{
     --Light-Cyan:#66AABB;
@@ -25,7 +26,7 @@ header{
     height: 54px;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 50;
     background-color:var(--White);
 }
 .header-content{
@@ -52,6 +53,11 @@ header{
     margin-top: 15px;
     justify-content: space-between;
     color: var(--Gray);
+}
+.nav-item-text:hover{
+    cursor: pointer;
+    color:var(--Dark-Cyan);
+    font-weight: bold;
 }
 .img-and-proflie{
     width: 1200px;
@@ -89,7 +95,7 @@ a{
     height: 36px;
     cursor: pointer; 
     background-size: cover;
-    z-index: 1000;
+    z-index: 50;
     position: absolute;
     top: 180px;
 }
@@ -112,11 +118,11 @@ a{
     opacity: 0.4;
 }
 .dot{
-    z-index: 1000;
+    z-index: 6;
     width: 12px;
     height: 12px;
     cursor: pointer;
-    z-index: 999;
+    z-index: 6;
     margin: 4px;
     background-color: var(--White);
     border-radius: 50%;

@@ -1,19 +1,17 @@
 import mysql.connector
 import json
-from mySQL import MySQLPassword
 from flask import jsonify
+from data import settings
 
-dbconfig={
-    "host":"localhost",
-    "port":"3306",
-    "database":"taipei_day_trip",
-    "user":"eureka",
-    "password":MySQLPassword(),
-}
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "mypool",
                                                       pool_size = 10,
                                                       pool_reset_session = True,
-                                                      **dbconfig)
+                                                      host=settings.host,
+                                                      port=settings.port,
+                                                      database=settings.database,
+                                                      user=settings.user,
+                                                      password=settings.password
+                                                      )
 
 def get_categories():
     try:

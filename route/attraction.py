@@ -1,5 +1,5 @@
 from flask import jsonify, Flask,  request, render_template, redirect, session, url_for, jsonify, make_response, Blueprint
-from view.models import get_categories, get_attraction_by_id, get_attractions, get_attractions_keyword_filtered
+from model.attraction_model import get_categories, get_attraction_by_id, get_attractions, get_attractions_keyword_filtered
 import json
 
 attraction_api=Blueprint("attraction_api",
