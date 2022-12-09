@@ -32,4 +32,4 @@ app.register_blueprint(attraction_api)
 app.register_blueprint(member_api)
 
 if __name__=="__main__":
-	app.run(port=3000)	#host='0.0.0.0', 
+	app.run(host='0.0.0.0', port=3000)
