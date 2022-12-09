@@ -10,7 +10,7 @@
     {% endblock title %}
 
     {% block section %}
-        <section class="img-and-proflie wrapper">
+        <div class="img-and-proflie wrapper">
             <div class="slideshow-container">
                 <div class="dots"></div>
                 <a class="prev" onclick="plusSlides(-1)"></a>
@@ -52,15 +52,15 @@
                     </div>
                 </div>
             </div>     
-        </section>
-        <hr/>
-        <section class="attraction-infos wrapper">
+        </div>
+        <hr/ class="hr">
+        <div class="attraction-infos wrapper">
             <div class="description"></div>
             <div class="address">景點地址:</div>
             <div class="address-content"></div>
             <div class="transport">交通方式:</div>
             <div class="transport-content"></div>
-        </section>
+        </div>
     {% endblock section %}
 
     {% block js %}

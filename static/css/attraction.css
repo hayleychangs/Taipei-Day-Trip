@@ -95,7 +95,7 @@ a{
     height: 36px;
     cursor: pointer; 
     background-size: cover;
-    z-index: 6;
+    z-index: 50;
     position: absolute;
     top: 180px;
 }
