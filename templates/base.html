@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}{% endblock css %}
+    {% block title %}{% endblock title %}
+</head>
+<body>
+    <div class="backgroundcover"></div>
+    <header>
+        <div class="header-content wrapper">
+            <a href="/">
+                <h2 class="theme">台北一日遊</h2>
+            </a>
+            <nav class="nav-item">
+                <div class="nav-item-text">預定行程</div>
+                <div class="nav-item-text" id="show-sign-in">登入/註冊</div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="signin-box">
+            <div class="box1 popup" id="box1">
+                <div class="signin">
+                    <div class="signin-header">
+                        <div class="signin-title">登入會員帳號</div>
+                    <img class="close-icon" id="signin-close-icon" src="/static/icon/close.png" alt="X">
+                    </div>
+                    <div class="signin-form" id="signin-form">
+                        <div class="form-element">
+                            <input type="email" name="signin-email" id="signin-email" placeholder="輸入電子信箱" onfocus="this.placeholder=''" onblur="this.placeholder='輸入電子信箱'" required>
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-element">
+                            <input type="password" name="signin-password" id="signin-password" placeholder="輸入密碼" onfocus="this.placeholder=''" onblur="this.placeholder='輸入密碼'" required>
+                            <small>Error message</small>
+                        </div>
+                        <div class="btn-box">
+                            <button class="sign-btn" id="signin-btn">登入帳戶</button>
+                        </div>
+                        <div class="sign-msg" id="signin-msg"></div>
+                        <div class="sign-text" id="signin-text">還沒有帳戶？<a href="#" onclick="show_hide()">點此註冊</a></div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="signup-box">
+            <div class="box2" id="box2">
+                <div class="signup">
+                    <div class="signup-header">
+                        <div class="signup-title">註冊會員帳號</div>
+                    <img class="close-icon" id="signup-close-icon" src="/static/icon/close.png" alt="X">
+                    </div>
+                    <div class="signup-form" id="signup-form">
+                        <div class="form-element">
+                            <input type="text" name="signup-name" id="signup-name" placeholder="輸入姓名" onfocus="this.placeholder=''" onblur="this.placeholder='輸入姓名'" required>
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-element">
+                            <input type="email" name="signup-email" id="signup-email" placeholder="輸入電子信箱" onfocus="this.placeholder=''" onblur="this.placeholder='輸入電子信箱'" required>
+                            <small>Error message</small>
+                        </div>
+                        <div class="form-element">
+                            <input type="password" name="signup-password" id="signup-password" placeholder="輸入密碼" onfocus="this.placeholder=''" onblur="this.placeholder='輸入密碼'" required>
+                            <small>Error message</small>
+                        </div>
+                        <div class="btn-box">
+                            <button class="sign-btn" id="signup-btn">註冊新帳號</button>
+                        </div>
+                        <div class="sign-msg" id="signup-msg"></div>
+                        <div class="sign-text" id="signup-text">已經有帳戶了？<a href="#" onclick="show_hide()">點此登入</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block section %}{% endblock section %}
+        <button onclick="topFunction()" id="go-to-top" title="回到頂端">Top</button>
+    </main>
+    <footer>
+        <div class="footer-content wrapper">
+            <div class="footer-text">
+                COPYRIGHT © 2022 台北一日遊
+            </div>
+        </div>
+    </footer>
+    {% block js %}{% endblock js %}
+</body>
+</html>

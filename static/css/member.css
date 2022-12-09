@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+body{
+    margin:0;
+    font-family: "NOTO Sans TC", san-serif;
+    height: 100vh;
+}
+:root{
+    --Light-Cyan:#66AABB;
+    --Lighter-Cyan:#AADDEE;
+    --Dark-Cyan:#337788;
+    --Cyan:#448899;
+    --Blue-Gray:#AABBCC;
+    --White:#FFFFFF;
+    --Black:#000000;
+    --Gray:#666666;
+    --light-Gray:rgb(191,191,191);
+}
+.backgroundcover{
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: brightness(60%);
+    position: fixed;
+    top: 0;
+    z-index: 500;
+    display: none;
+}
+.signin-box, .signup-box{
+    position: relative;
+    background-color: antiquewhite;
+    top: 30px;
+}
+.box1, .box2{ 
+    width: 340px;
+    height: auto;
+    padding: 10px;
+    background-color: var(--White);
+    /* border-radius: 10px; */
+    border-top: 10px solid;
+    border-image: 
+    linear-gradient(
+      to right, 
+      var(--Light-Cyan) 0%,
+      var(--Dark-Cyan) 100%
+    ) 1 0 0 0;
+    clip-path: inset(0 round 10px);
+    box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    /*定位+popup*/
+    position: absolute;
+    top: 0;             
+    bottom: 200;           
+    left: 0;        
+    right: 0;
+    margin: auto;
+}
+.box1{
+    display: block;
+}
+.box2{
+    visibility: hidden;   /*剛開始消失*/
+}
+.popup{     /*彈出視窗 測試  body height要加100vh*/
+    position: absolute;
+    top: 0;             
+    bottom: 200;           
+    left: 0;        
+    right: 0;
+    margin: auto;
+    /* translate: (-50%, -50%) scale(1.25); */
+    opacity: 0;
+    transition:
+                opacity 100ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+    /* background: rgba(0, 0, 0, 0.6);  背景要黑 */
+}
+.popup.active{
+    
+    opacity: 1;
+    translate: (-50%, -50%) scale(1);
+    transition:
+                opacity 100ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+.signin-header, .signup-header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-bottom: 5px;
+}
+.signin-title, .signup-title{
+    width: auto;
+    height: auto;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 100px;
+    color: var(--Gray);
+    justify-content: center;
+    align-items: center;
+}
+.close-icon{
+    width: 28px;
+    height: 28px;
+    margin-left: 60px;
+    position: relative;
+    cursor: pointer;
+}
+.form-element > input{
+    width: 310px;
+    height: 47px;
+    margin: 10px 10px 0px 10px;
+    border-radius: 5px;
+    border-color: var(--light-Gray);
+    border-style: solid;
+    border-width: 0.5mm;
+    outline: none;
+    font-size: 16px;
+    font-weight:bold;
+    padding-left: 5px;
+}
+.btn-box{
+    margin-top: 20px;
+}
+.sign-btn{
+    width: 320px;
+    height: 47px;
+    margin: 0px 10px 5px 10px;
+    border-radius: 5px;
+    color: var(--White);
+    background-color: var(--Cyan);
+    text-align: center;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+#signin-msg, #signup-msg{
+    width: 93%;
+    height: auto;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 12px;
+    margin-bottom: 5px;
+    display: none;
+}
+.sign-text{ 
+    width: 100%;
+    height: auto;
+    color: var(--Gray);
+    font-size: 16px;
+    text-align: center;
+    margin: 2px 0 2px 0;
+}
+.sign-text > a{
+    text-decoration: none;
+    color: var(--Gray);
+}
+.sign-text > a:hover{
+    color:var(--Dark-Cyan);
+}
+.signup-successed, .signin-successed{
+    color: var(--Dark-Cyan); 
+}
+.signup-failed, .signin-failed{
+    color: red;
+}
+
+.form-element.success input{
+    border-color: #2ecc71;
+}
+.form-element.error input{
+  border-color: #e74c3c;
+}
+.form-element{
+    position: relative;
+    margin-bottom: 10px;
+}
+.form-element small{
+    visibility: hidden;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 10px;
+    font-size: 14px;
+}
+.form-element.error small{
+    color: red;
+    visibility: visible;
+  }

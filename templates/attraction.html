@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/attraction.css">
-    <title>景點資訊</title>
-</head>
-<body>
-    <header>
-        <div class="header-content wrapper">
-            <a href="/">
-                <h2 class="theme">台北一日遊</h2>
-            </a>
-            <nav class="nav-item">
-                <div class="nav-item-text">預定行程</div>
-                <div class="nav-item-text">登入/註冊</div>
-            </nav>
-        </div>
-    </header>
-    <main>
+{% extends "base.html" %}
+
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="/static/css/attraction.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/member.css">
+    {% endblock css %}
+
+    {% block title %}
+        <title>景點資訊</title>
+    {% endblock title %}
+
+    {% block section %}
         <section class="img-and-proflie wrapper">
             <div class="slideshow-container">
                 <div class="dots"></div>
@@ -71,15 +61,9 @@
             <div class="transport">交通方式:</div>
             <div class="transport-content"></div>
         </section>
-        <button onclick="topFunction()" id="go-to-top" title="回到頂端">Top</button>
-    </main>
-    <footer>
-        <div class="footer-content wrapper">
-            <div class="footer-text">
-                COPYRIGHT © 2022 台北一日遊
-            </div>
-        </div>
-    </footer>
-    <script type="text/javascript" src="/static/js/attraction.js"></script>
-</body>
-</html>
+    {% endblock section %}
+
+    {% block js %}
+        <script type="text/javascript" src="/static/js/attraction.js"></script>
+        <script type="text/javascript" src="/static/js/member.js"></script>
+    {% endblock js %}

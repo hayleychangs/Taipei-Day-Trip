@@ -2,6 +2,7 @@
 body{
     margin:0;
     font-family: "NOTO Sans TC", san-serif;
+    height: 100vh;
 }
 :root{
     --Light-Cyan:#66AABB;
@@ -13,6 +14,7 @@ body{
     --Black:#000000;
     --Gray:#666666;
     --light-Gray:rgb(191,191,191);
+    --lighter-Gray:rgb(232, 232, 232);
 }
 a{
     text-decoration: none;
@@ -27,7 +29,7 @@ header{
     height: 54px;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 50;
     background-color:var(--White);
 }
 .header-content{
@@ -55,6 +57,11 @@ header{
     margin-top: 15px;
     justify-content: space-between;
     color: var(--Gray);
+}
+.nav-item-text:hover{
+    cursor: pointer;
+    color:var(--Dark-Cyan);
+    font-weight: bold;
 }
 .section-banner{
     box-sizing: border-box;
@@ -118,6 +125,7 @@ header{
     border-style: none;
     border-radius: 0px 5px 5px 0px;
     background-color: var(--Dark-Cyan);
+    cursor: pointer;
 }
 .magnifier{
     width: 60%;
@@ -194,7 +202,7 @@ header{
 .attraction a{
     width: 100%;
     height: 100%;
-    z-index: 1000;
+    z-index: 5;
 }
 .img-container{
     width: 100%;
@@ -271,10 +279,10 @@ header{
     padding: 15px;
     border-radius: 10px;
     font-size: 18px;
-  }
-  #go-to-top:hover {
+}
+#go-to-top:hover {
     background-color:var(--Cyan);
-  }
+}
 @media screen and (max-width:1200px) and (min-width:600px){
     header{
         width: 100%;
