@@ -2,7 +2,6 @@
 
     {% block css %}
         <link rel="stylesheet" type="text/css" href="/static/css/attraction.css">
-        <link rel="stylesheet" type="text/css" href="/static/css/member.css">
     {% endblock css %}
 
     {% block title %}
@@ -31,25 +30,26 @@
                         <div class="form-content">以此景點為中心的一日行程，帶您探索城市角落故事</div>
                     </div>
                     <div class="pick-date">選擇日期：
-                        <input type="date" placeholder="" value="">
-                   </div>
+                        <input type="date" id="date" name="date" class="date">
+                    </div>
                    <div class="pick-time">選擇時間：
                         <div class="radio-box">
-                            <input type="radio" id="morning" name="time" value="上半天" checked>
+                            <input type="radio" id="morning" name="time" value="morning" checked>
                             <label for="morning">上半天</label>
                         </div>
                         <div class="radio-box">
-                            <input type="radio" id="afternoon" name="time" value="下半天">
+                            <input type="radio" id="afternoon" name="time" value="afternoon">
                             <label for="afternoon">下半天</label>
                         </div>
                    </div>
                    <div class="guide">
                         <div class="guide-fee">導覽費用：</div>
-                        <div class="fee"></div>
+                        <div class="fee" id="fee"></div>
                    </div>
                    <div class="btn-container">
                         <button class="booking-btn" id="booking-btn" type="submit">開始預約行程</button>
                     </div>
+                    <span class="date-error-msg"></span>
                 </div>
             </div>     
         </div>
@@ -65,5 +65,4 @@
 
     {% block js %}
         <script type="text/javascript" src="/static/js/attraction.js"></script>
-        <script type="text/javascript" src="/static/js/member.js"></script>
     {% endblock js %}

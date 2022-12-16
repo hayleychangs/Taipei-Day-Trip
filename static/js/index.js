@@ -221,7 +221,6 @@ function getCategories(){
         const categoryItem = document.getElementsByClassName("category-item");
         for(let i=0;i<categoryItem.length;i++){
             categoryItem[i].addEventListener("click", function() {
-                console.log(categoryItem[i].innerText)
                 document.getElementById("keyword").value="";   
                 document.getElementById("keyword").value += categoryItem[i].innerText
             })
@@ -264,4 +263,3 @@ function topFunction(){
   document.body.scrollTop=0; // For Safari
   document.documentElement.scrollTop=0; // For Chrome, Firefox, IE and Opera
 }
-

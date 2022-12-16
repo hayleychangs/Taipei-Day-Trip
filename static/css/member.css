@@ -28,13 +28,13 @@ body{
     position: relative;
     background-color: antiquewhite;
     top: 30px;
+    display: none;
 }
-.box1, .box2{ 
+.signin, .signup{ 
     width: 340px;
     height: auto;
     padding: 10px;
     background-color: var(--White);
-    /* border-radius: 10px; */
     border-top: 10px solid;
     border-image: 
     linear-gradient(
@@ -48,19 +48,13 @@ body{
 
     /*定位+popup*/
     position: absolute;
-    top: 0;             
+    top: 100px;             
     bottom: 200;           
     left: 0;        
     right: 0;
     margin: auto;
 }
-.box1{
-    display: block;
-}
-.box2{
-    visibility: hidden;   /*剛開始消失*/
-}
-.popup{     /*彈出視窗 測試  body height要加100vh*/
+.popup{
     position: absolute;
     top: 0;             
     bottom: 200;           
@@ -72,10 +66,8 @@ body{
     transition:
                 opacity 100ms ease-in-out 0ms,
                 transform 20ms ease-in-out 0ms;
-    /* background: rgba(0, 0, 0, 0.6);  背景要黑 */
 }
 .popup.active{
-    
     opacity: 1;
     translate: (-50%, -50%) scale(1);
     transition:
@@ -185,4 +177,4 @@ body{
 .form-element.error small{
     color: red;
     visibility: visible;
-  }
+}

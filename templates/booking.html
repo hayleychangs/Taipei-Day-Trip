@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="/static/css/booking.css">
+    {% endblock css %}
+
+    {% block title %}
+    <title>預定行程</title>
+    {% endblock title %}
+
+    {% block section %}
+        <div class="booking-box">
+            <div class="welcome-message">
+            </div>
+            <div class="booking-form">
+                <div class="booking-img-container">
+                </div>
+                <div class="booking-infomation">
+                    <div class="booking-name">
+                        <span class="info-list">台北一日遊：</span>
+                    </div>
+                    <div class="booking-date">
+                        <span class="info-list">日期：</span>
+                    </div>
+                    <div class="booking-time">
+                        <span class="info-list">時間：</span>
+                    </div>
+                    <div class="booking-price">
+                        <span class="info-list">費用：</span>
+                    </div>
+                    <div class="booking-address">
+                        <span class="info-list">地點：</span>
+                    </div>
+                </div>
+                <img class="delete-booking" src="/static/icon/delete.png" alt="delete-booking">
+            </div>
+            <hr>
+            <div class="contact-form">
+                <div class="form-title">您的聯絡資訊</div>
+                <div class="form-list">
+                    <span>聯絡姓名：</span>
+                    <input class="contact-name" type="text" required/>
+                </div>
+                <div class="form-list">
+                    <span>聯絡信箱：</span>
+                    <input class="contact-email" type="email" required/>
+                </div>
+                <div class="form-list">
+                    <span>手機號碼：</span>
+                    <input class="contact-phone-number" type="number" required/>
+                </div>
+                <div class="form-warning-msg">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
+            </div>
+            <hr>
+            <div class="payment-form">
+                <div class="form-title">信用卡付款資訊</div>
+                <div class="form-list">
+                    <span>卡片號碼：</span>
+                    <input class="credit-card-number" type="text" placeholder="**** **** **** ****" onfocus="this.placeholder=''" onblur="this.placeholder='**** **** **** ****'" required/>
+                </div>
+                <div class="form-list">
+                    <span>過期時間：</span>
+                    <input class="credit-card-expire-date" type="text" placeholder="MM / YY" onfocus="this.placeholder=''" onblur="this.placeholder='MM / YY'" required/>
+                </div>
+                <div class="form-list">
+                    <span>驗證密碼：</span>
+                    <input class="credit-card-cvv" type="text" placeholder="CVV" onfocus="this.placeholder=''" onblur="this.placeholder='CVV'" required/>
+                </div>
+            </div>
+            <hr>
+            <div class="confirm-box">
+                <div class="total-price">
+                    <span>總價：</span>
+                </div>
+                <button class="confirm-btn">確認訂購並付款</button>
+            </div>
+        </div>
+    {% endblock section %}
+
+    {% block js %}
+        <script type="text/javascript" src="/static/js/booking.js"></script>
+    {% endblock js %}

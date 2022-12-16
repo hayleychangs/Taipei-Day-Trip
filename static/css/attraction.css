@@ -95,7 +95,7 @@ a{
     height: 36px;
     cursor: pointer; 
     background-size: cover;
-    z-index: 50;
+    z-index: 6;
     position: absolute;
     top: 180px;
 }
@@ -289,6 +289,11 @@ label{
     align-items: center;
     margin-top: 20px;
     margin-left: 10px;
+    cursor: pointer;
+}
+.booking-btn:hover{
+    font-weight: bold;
+    background-color: var(--Cyan);
 }
 hr{
     width: 1200px;

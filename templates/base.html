@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css">
     {% block css %}{% endblock css %}
     {% block title %}{% endblock title %}
 </head>
@@ -15,15 +16,14 @@
                 <h2 class="theme">台北一日遊</h2>
             </a>
             <nav class="nav-item">
-                <div class="nav-item-text">預定行程</div>
+                <div class="nav-item-text" id="show-booking-page">預定行程</div>
                 <div class="nav-item-text" id="show-sign-in">登入/註冊</div>
             </nav>
         </div>
     </header>
     <main>
-        <div class="signin-box">
-            <div class="box1 popup" id="box1">
-                <div class="signin">
+        <div class="signin-box popup">
+            <div class="signin" id="signin">
                     <div class="signin-header">
                         <div class="signin-title">登入會員帳號</div>
                     <img class="close-icon" id="signin-close-icon" src="/static/icon/close.png" alt="X">
@@ -43,12 +43,10 @@
                         <div class="sign-msg" id="signin-msg"></div>
                         <div class="sign-text" id="signin-text">還沒有帳戶？<a href="#" onclick="show_hide()">點此註冊</a></div>
                     </div> 
-                </div>
             </div>
         </div>
         <div class="signup-box">
-            <div class="box2" id="box2">
-                <div class="signup">
+            <div class="signup" id="signup">
                     <div class="signup-header">
                         <div class="signup-title">註冊會員帳號</div>
                     <img class="close-icon" id="signup-close-icon" src="/static/icon/close.png" alt="X">
@@ -72,7 +70,6 @@
                         <div class="sign-msg" id="signup-msg"></div>
                         <div class="sign-text" id="signup-text">已經有帳戶了？<a href="#" onclick="show_hide()">點此登入</a></div>
                     </div>
-                </div>
             </div>
         </div>
         {% block section %}{% endblock section %}
@@ -85,6 +82,7 @@
             </div>
         </div>
     </footer>
+    <script type="text/javascript" src="/static/js/member.js"></script>
     {% block js %}{% endblock js %}
 </body>
 </html>
