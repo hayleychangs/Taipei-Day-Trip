@@ -1,5 +1,4 @@
 from flask import *
-# from model.member_model import 會員資料庫函式
 import json
 import jwt
 from model.member_model import check_email, insert_signupinfo, check_signin
@@ -14,19 +13,14 @@ member_api=Blueprint("member_api",
 @member_api.route("/api/user", methods=["POST"])
 def api_user():
     if request.method=="POST":
-        print("進入程序")
-        request_data=request.get_json()
-        print(request_data)
         try:
             request_data=request.get_json()
-            print(request_data)
             new_name=request_data["name"]
             email_check=request_data["email"]
             new_password=request_data["password"]
             email_check_result=check_email(email_check)
             if email_check_result==[] and new_name!="" and email_check!="" and new_password!="":
                 insert_result=insert_signupinfo(new_name, email_check, new_password)
-                print(insert_result)
                 if insert_result==True:
                     response=make_response(jsonify({"ok":insert_result}))
                     return response
@@ -37,7 +31,6 @@ def api_user():
                     return error_response
             else:
                  email_db=email_check_result[0][0]
-                 print(email_db)
                  if email_db==email_check:
                     email_registered=True
                     email_registered_msg="Email already exists."

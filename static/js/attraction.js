@@ -35,7 +35,7 @@ let getData=()=>{
         }
     })
     .then((data)=>{
-        let attractionInfo=data["data"];
+        let attractionInfo=data.data;
         if (attractionInfo!=null){
 
            //展示景點資訊
@@ -223,3 +223,69 @@ var myTimer=setInterval(function(){
 function stopAutoPlay(){
     clearInterval(myTimer);
 }
+
+
+
+let today=new Date().toISOString().split("T")[0];
+document.querySelector(".date").setAttribute("min", today);
+let dateCheck;
+let priceValue;
+const dateErrorMsg=document.querySelector(".date-error-msg");
+//建立一個預定行程
+function newBooking(){
+    const src="/api/booking";
+
+    if (signInStatus==false){
+        popUp.classList.add("active");
+        signIn.style.display="block";
+        backgroundCover.style.display="block";
+    }
+    
+    const dateInput=document.querySelector(".date").value;
+    const timeInput=document.querySelector("input[name='time']:checked").value;
+
+    if (signInStatus==true&&dateInput==""){
+        dateErrorMsg.innerText="請選擇日期!";
+        dateErrorMsg.style.display="block";
+        // date-input css設定紅框
+        dateCheck=false;
+    }else{
+        dateErrorMsg.style.display="none";
+        dateCheck=true;
+    }
+
+    if (timeInput=="morning"){
+        priceValue=Number(2000);
+    }else{
+        priceValue=Number(2500);
+    }
+    console.log(priceValue)
+
+    if (signInStatus==true&&dateCheck==true){
+        const src="/api/booking";
+        fetch(src, {
+            method:"POST",
+            body: JSON.stringify({
+                "attractionId": id,
+                "date": dateInput,
+                "time": timeInput,
+                "price": priceValue
+            }),
+            headers:{
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        })
+        .then(response=>response.json())
+        .then((data)=>{
+            console.log(data)
+            if (data.ok===true){
+                redirectToBooking();
+            }
+        })
+    }
+    
+}
+
+//建立預訂行程
+const newBookingBtn=document.getElementById("booking-btn");
+newBookingBtn.addEventListener("click", newBooking);

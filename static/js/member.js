@@ -1,28 +1,29 @@
-let ShowSignIn=document.getElementById("show-sign-in");
-let popUp=document.querySelector(".popup");
-let hrefCurrent=location.href;
+const showBookingPage=document.getElementById("show-booking-page");
+const ShowSignIn=document.getElementById("show-sign-in");
+const popUp=document.querySelector(".popup");
+const hrefCurrent=location.href;
 
-let signIn=document.getElementById("box1");
-let signUp=document.getElementById("box2");
+const signIn=document.querySelector(".signin-box");
+const signUp=document.querySelector(".signup-box");
 
-let SignInCloseIcon=document.getElementById("signin-close-icon");
-let SignUpCloseIcon=document.getElementById("signup-close-icon");
+const SignInCloseIcon=document.getElementById("signin-close-icon");
+const SignUpCloseIcon=document.getElementById("signup-close-icon");
 
-let signInForm=document.getElementById("signin-form");
-let signInEmail=document.getElementById("signin-email");
-let signInPassword=document.getElementById("signin-password");
-let signInBtn=document.getElementById("signin-btn");
-let signInMsgBox=document.getElementById("signin-msg");
+const signInForm=document.getElementById("signin-form");
+const signInEmail=document.getElementById("signin-email");
+const signInPassword=document.getElementById("signin-password");
+const signInBtn=document.getElementById("signin-btn");
+const signInMsgBox=document.getElementById("signin-msg");
 
-let signUpForm=document.getElementById("signup-form");
-let signUpName=document.getElementById("signup-name");
-let signUpEmail=document.getElementById("signup-email");
-let signUpPassword=document.getElementById("signup-password");
-let signUpBtn=document.getElementById("signup-btn");
-let signUpMsgBox=document.getElementById("signup-msg");
+const signUpForm=document.getElementById("signup-form");
+const signUpName=document.getElementById("signup-name");
+const signUpEmail=document.getElementById("signup-email");
+const signUpPassword=document.getElementById("signup-password");
+const signUpBtn=document.getElementById("signup-btn");
+const signUpMsgBox=document.getElementById("signup-msg");
 
-let formElement=document.querySelectorAll(".form-element");
-let backgroundCover=document.querySelector(".backgroundcover");
+const formElement=document.querySelectorAll(".form-element");
+const backgroundCover=document.querySelector(".backgroundcover");
 
 // 會員登入畫面
 function show_hide(){
@@ -40,7 +41,7 @@ function show_hide(){
         backgroundCover.style.display="none";
         signUp.style.display="block";
         backgroundCover.style.display="block";
-        signUp.style.visibility="visible";
+        // signUp.style.visibility="visible";
      
         signUpName.value="";
         signUpEmail.value="";
@@ -55,6 +56,7 @@ function show_hide(){
 ShowSignIn.addEventListener("click", function(){
     if (ShowSignIn.innerHTML==="登入/註冊"){
         popUp.classList.add("active");
+        signIn.style.display="block";
         backgroundCover.style.display="block";
     }
 });
@@ -69,6 +71,7 @@ SignInCloseIcon.addEventListener("click", function(){
     }
 
     popUp.classList.remove("active");
+    signIn.style.display="none";
     backgroundCover.style.display="none";
 });
 
@@ -83,9 +86,9 @@ SignUpCloseIcon.addEventListener("click", function(){
     }
 
     popUp.classList.remove("active");
-    signIn.style.display="block";
+    // signIn.style.display="block";
     signUp.style.display="none";
-    signUp.style.visibility="hidden";
+    // signUp.style.visibility="hidden";
     backgroundCover.style.display="none";
 });
 
@@ -114,7 +117,7 @@ backgroundCover.addEventListener("click", function(){
     popUp.classList.remove("active");
     signIn.style.display="block";
     signUp.style.display="none";
-    signUp.style.visibility="hidden";
+    // signUp.style.visibility="hidden";
     backgroundCover.style.display="none";
 });
 
@@ -304,6 +307,7 @@ function signInStatusCheck(){
     request.send();
     request.onload=function(){
         let data=JSON.parse(this.responseText);
+        console.log(data)
         changeNavItem(data);
     }
     request.onerror=function(){
@@ -355,8 +359,8 @@ function signOut(){
 }
 
 //表單輸入驗證
-let EmailRegex=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-let PasswordRegex=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/;
+const EmailRegex=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+const PasswordRegex=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/;
 
 //註冊輸入驗證
 let signUpNameCheck;
@@ -466,3 +470,41 @@ function SetSuccessFor(input){
 //         console.log(data)
 //     })
 // }
+
+//booking前檢查登入狀態
+function signInStatusCheckForBooking(){
+    let src="/api/user/auth";
+    fetch(src, {
+        method: "GET",
+    })
+    .then(response=>response.json())
+    .then((data)=>{
+        if (data["data"]==null){
+            console.log(data);
+            signInStatus=false;
+            return signInStatus
+        }else{
+            signInStatus=true;
+            return signInStatus
+        }
+    })
+}
+let signInStatus=signInStatusCheckForBooking();
+
+function afterCheck(){
+    console.log(signInStatus);
+    if (signInStatus==true){
+        redirectToBooking();
+    }else{
+        popUp.classList.add("active");
+        signIn.style.display="block";
+        backgroundCover.style.display="block";
+    }
+}
+
+//導向booking頁面
+function redirectToBooking(){
+    location.href="/booking";
+}
+
+showBookingPage.addEventListener("click", afterCheck);
