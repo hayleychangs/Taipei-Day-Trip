@@ -1,8 +1,9 @@
-from flask import jsonify, Flask,  request, render_template, redirect, session, url_for, jsonify, make_response, Blueprint
+from flask import jsonify, Flask,  request, render_template, redirect, session, url_for,  make_response, Blueprint
 from flask_cors import CORS
 from route.attraction import attraction_api
 from route.member import member_api
 from route.booking import booking_api
+from route.order import order_api
 
 app=Flask(
     __name__,
@@ -32,6 +33,7 @@ def thankyou():
 app.register_blueprint(attraction_api)
 app.register_blueprint(member_api)
 app.register_blueprint(booking_api)
+app.register_blueprint(order_api)
 
 if __name__=="__main__":
 	app.run(host='0.0.0.0', port=3000)

@@ -132,6 +132,11 @@ hr{
     font-weight: bold;
     margin-bottom: 20px;
 }
+.contact-error-notice{
+    position: relative;
+    top: -42px;
+    left: 120px;
+}
 .form-list{
     font-size: 15px;
     font-weight: 400;
@@ -148,15 +153,16 @@ hr{
 }
 .form-warning-msg{
     font-weight: bold;
+    position: relative;
+    bottom: -70px;
 }
 .payment-form{
     width: 980px;
-    height: 188px;
+    height: 230px;
     color: var(--Gray);
     margin: 40px auto;
-    padding-bottom: 20px;
 }
-.confirm-box{
+.submit-box{
     width: 980px;
     height: 100px;
     margin: 40px auto;
@@ -166,7 +172,7 @@ hr{
     color: var(--Gray);
     font-weight: bold;
 }
-.confirm-btn{
+.submit-btn{
     margin-top: 20px;
     width: 173px;
     height: 36px;
@@ -178,7 +184,7 @@ hr{
     border: none;
     cursor: pointer;
 }
-.confirm-btn:hover{
+.submit-btn:hover{
     font-weight: bold;
     background-color: var(--Cyan);
 }
@@ -199,6 +205,29 @@ hr{
 .error-msg-box a{
     font-weight: bolder;
     color: var(--Dark-Cyan);
+}
+.form-list.success input{
+    border-color: var(--lighter-Gray);
+}
+.form-list.error input{
+  border-color: #e74c3c;
+}
+.form-list{
+    position: relative;
+    bottom: -50px;
+    margin-bottom: 10px;
+}
+.form-list small{
+    visibility: hidden;
+    position: absolute;
+    top: 10px;
+    bottom: 0;
+    left: 300px;
+    font-size: 14px;
+}
+.form-list.error small{
+    color: red;
+    visibility: visible;
 }
 .footer-content{
     display: flex;
@@ -230,6 +259,49 @@ hr{
 }
 #go-to-top:hover{
     background-color:var(--Cyan);
+}
+.form-title-box{
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    padding-bottom: 20px;
+}
+.card-error-notice{
+    position: relative;
+    top: -42px;
+    left: 140px;
+}
+.form-box{
+    width: 300px;
+    height: auto;
+    margin-bottom: 40px;
+    position: relative;
+    bottom: -50px;
+}
+.form-subtitle{
+    padding-bottom: 20px;
+}
+.tpfield{
+    height: 35px;
+    width: 200px;
+    border: 1.5px solid var(--lighter-Gray);
+    margin: 0px 0 30px 0;
+    padding: 5px;
+    position: absolute;
+    top: -10px;
+    left: 80px;
+    border-radius: 5px;
+}
+.tappay-field-focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.card-error-notice, .contact-error-notice{
+    font-size: 14px;
+    color: red;
+    display: none;
 }
 @media screen and (max-width:1200px) and (min-width:600px){
     header{
@@ -270,7 +342,7 @@ hr{
     .payment-form{
         width: 90%;
     }
-    .confirm-box{
+    .submit-box{
         width: 90%;
     }
 }
@@ -324,7 +396,7 @@ hr{
     .payment-form{
         width: 90%;
     }
-    .confirm-box{
+    .submit-box{
         width: 90%;
     }
 }

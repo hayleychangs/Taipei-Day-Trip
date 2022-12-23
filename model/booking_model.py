@@ -1,6 +1,6 @@
 import mysql.connector
 import json
-import datetime
+from datetime import datetime
 from flask import jsonify
 from data import settings
 
@@ -52,7 +52,7 @@ def get_booking_info(member_id):
         booking_result=mycursor.fetchone()  #如果要能訂多個行程改fetchall
         if booking_result==None:
             booking_info=None
-            return jsonify({"data":booking_info})
+            return booking_info
         else:
             attraction_id=booking_result["attraction_id"]
             booking_date=booking_result["date"].strftime("%Y-%m-%d")
@@ -78,7 +78,7 @@ def get_booking_info(member_id):
                 "time": booking_time,
                 "price":booking_price
             }
-            return jsonify({"data":booking_info})
+            return booking_info
     except:
         print("Unexpected Error")
     finally:

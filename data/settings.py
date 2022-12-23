@@ -10,3 +10,5 @@ user=os.getenv("DB_user")
 password=os.getenv("DB_password")
 
 secretkey=os.getenv("key")
+
+partner_key=os.getenv("partner_key")
