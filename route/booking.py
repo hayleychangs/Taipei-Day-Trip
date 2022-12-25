@@ -7,7 +7,7 @@ from route.member import verify_jwt_token
 
 
 booking_api=Blueprint("booking_api",
-                         __name__,
+                        __name__,
                         static_folder="static",
                         static_url_path="/static",
 )
@@ -21,7 +21,8 @@ def api_booking():
             member_id=signin_check_result["id"]
             if signin_check_result!=False:
                 if request.method=="GET":
-                    response=get_booking_info(member_id)
+                    result=get_booking_info(member_id)
+                    response=make_response(jsonify({"data":result}))
                     return response
                 elif request.method=="POST":
                     request_data=request.get_json()

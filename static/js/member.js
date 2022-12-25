@@ -159,7 +159,9 @@ function signUpSubmit(){
         })
         .then(response=>response.json())
         .then((data)=>{
-            if (data["ok"]===true){
+            console.log("POST結果")
+            console.log(data)
+            if (data.ok===true){
                 for( let i=0;i<formElement.length;i++){
                     formElement[i].className="form-element";
                 }
@@ -170,7 +172,7 @@ function signUpSubmit(){
                 signUpMsgBox.appendChild(successedContent);
                 signUpMsgBox.style.display="block";
             }else{
-                if (data["message"]==="Email already exists."){
+                if (data.message==="Email already exists."){
 
                     for( let i=0;i<formElement.length;i++){
                         formElement[i].className="form-element";
@@ -181,7 +183,30 @@ function signUpSubmit(){
                     signUpMsgBox.setAttribute("class", "signup-failed");
                     signUpMsgBox.appendChild(emailExistsMsg);
                     signUpMsgBox.style.display="block";
-                }else{
+                }else if(data.message==="Please fill out all required fields(name, email, password)."){
+
+                    for( let i=0;i<formElement.length;i++){
+                        formElement[i].className="form-element";
+                    }
+                    
+                    signUpMsgClear();
+                    let inputErrorMsg=document.createTextNode("請輸入完整的註冊資訊！");
+                    signUpMsgBox.setAttribute("class", "signup-failed");
+                    signUpMsgBox.appendChild(inputErrorMsg);
+                    signUpMsgBox.style.display="block";
+                }else if(data.message==="Please make sure all fields(name, email, password) are filled in correctly."){
+
+                    for( let i=0;i<formElement.length;i++){
+                        formElement[i].className="form-element";
+                    }
+
+                    signUpMsgClear();
+                    let inputErrorMsg=document.createTextNode("請輸入正確格式！");
+                    signUpMsgBox.setAttribute("class", "signup-failed");
+                    signUpMsgBox.appendChild(inputErrorMsg);
+                    signUpMsgBox.style.display="block";
+
+                }else if(data.message==="Signup failed."){
 
                     for( let i=0;i<formElement.length;i++){
                         formElement[i].className="form-element";
@@ -201,7 +226,7 @@ function signUpSubmit(){
         })
     }else{
         signUpMsgClear();
-        let errorContent=document.createTextNode("請輸入正確格式");
+        let errorContent=document.createTextNode("其它錯誤");
         signUpMsgBox.setAttribute("class", "signup-failed")
         signUpMsgBox.appendChild(errorContent);
         signUpMsgBox.style.display="block";
@@ -232,7 +257,7 @@ function signInSubmit(){
         })
         .then(response=>response.json())
         .then((data)=>{
-            if (data["ok"]===true){
+            if (data.ok===true){
                 signInMsgClear();
                 let signInSuccessedContent=document.createTextNode("登入成功！");
                 signInMsgBox.setAttribute("class", "signin-successed")
@@ -240,7 +265,7 @@ function signInSubmit(){
                 signInMsgBox.style.display="block";
                 redirect();
             }else{
-                if (data["message"]==="Incorrect email or password."){
+                if (data.message==="Incorrect email or password."){
 
                     for( let i=0;i<formElement.length;i++){
                         formElement[i].className="form-element";
@@ -251,7 +276,7 @@ function signInSubmit(){
                     signInMsgBox.setAttribute("class", "signin-failed");
                     signInMsgBox.appendChild(incorrectInputMsg);
                     signInMsgBox.style.display="block";
-                }else if (data["message"]==="Email unknown."){
+                }else if (data.message==="Email unknown."){
 
                     for( let i=0;i<formElement.length;i++){
                         formElement[i].className="form-element";
@@ -306,8 +331,7 @@ function signInStatusCheck(){
     request.open("GET", src, true);;
     request.send();
     request.onload=function(){
-        let data=JSON.parse(this.responseText);
-        console.log(data)
+        const data=JSON.parse(this.responseText);
         changeNavItem(data);
     }
     request.onerror=function(){
@@ -319,8 +343,8 @@ window.addEventListener("DOMContentLoaded",signInStatusCheck(), false);
 
 //改變畫面右上的nav-item 登入/註冊 > 登出系統
 function changeNavItem(data){
-    let navItem=document.getElementById("show-sign-in");
-    if (data["data"]!=null && navItem.innerHTML!="登出系統"){
+    const navItem=document.getElementById("show-sign-in");
+    if (data.data!=null && navItem.innerHTML!="登出系統"){
         navItem.innerHTML="";
         navItem.innerText="登出系統";
         navItem.setAttribute("id", "sign-out");
@@ -332,7 +356,7 @@ function changeNavItem(data){
 
 //恢復畫面右上的nav-item 登出系統 > 登入/註冊
 function restoreNavItem(){
-    let navItem=document.getElementById("sign-out");
+    const navItem=document.getElementById("sign-out");
     if (navItem!=null){
         navItem.innerHTML="";
         navItem.innerText="登入/註冊";
@@ -342,13 +366,13 @@ function restoreNavItem(){
 
 // 監聽登出事件
 function signOutListen(){
-    let navItem=document.getElementById("sign-out");
+    const navItem=document.getElementById("sign-out");
     navItem.addEventListener("click", signOut);
 }
 
 //登出流程
 function signOut(){
-    let src="/api/user/auth";
+    const src="/api/user/auth";
     fetch(src, {
         method: "DELETE",
     })
@@ -444,14 +468,14 @@ function signInCheck(){
 }
 
 function setErrorFor(input, message){
-    let formControl=input.parentElement; // .form-element
-    let small=formControl.querySelector("small");
+    const formControl=input.parentElement; // .form-element
+    const small=formControl.querySelector("small");
     small.innerText=message;
     formControl.className="form-element error";
 }
 
 function SetSuccessFor(input){
-    let formControl=input.parentElement;
+    const formControl=input.parentElement;
     formControl.className="form-element success";
 }
 
@@ -473,14 +497,13 @@ function SetSuccessFor(input){
 
 //booking前檢查登入狀態
 function signInStatusCheckForBooking(){
-    let src="/api/user/auth";
+    const src="/api/user/auth";
     fetch(src, {
         method: "GET",
     })
     .then(response=>response.json())
     .then((data)=>{
-        if (data["data"]==null){
-            console.log(data);
+        if (data.data===null){
             signInStatus=false;
             return signInStatus
         }else{
@@ -492,8 +515,7 @@ function signInStatusCheckForBooking(){
 let signInStatus=signInStatusCheckForBooking();
 
 function afterCheck(){
-    console.log(signInStatus);
-    if (signInStatus==true){
+    if (signInStatus===true){
         redirectToBooking();
     }else{
         popUp.classList.add("active");

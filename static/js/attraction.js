@@ -245,7 +245,7 @@ function newBooking(){
     const timeInput=document.querySelector("input[name='time']:checked").value;
 
     if (signInStatus==true&&dateInput==""){
-        dateErrorMsg.innerText="請選擇日期!";
+        dateErrorMsg.innerText=" 請選擇日期！";
         dateErrorMsg.style.display="block";
         // date-input css設定紅框
         dateCheck=false;

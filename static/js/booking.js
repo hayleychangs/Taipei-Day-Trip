@@ -12,7 +12,6 @@ const contactName=document.querySelector(".contact-name");
 const contactEmail=document.querySelector(".contact-email");
 const userSrc="/api/user/auth";
 const bookingSrc="/api/booking";
-let userName;
 
 window.onload=function(){
     getUsername();
@@ -34,7 +33,7 @@ function getUsername(){
             const userEmail=data.data.email;
             welcomeMsg.innerText="您好，" + userName + "，待預訂的行程如下：";
             contactName.value=userName;
-            contactEmail.value=userEmail;      
+            contactEmail.value=userEmail;
         }
     })
 }
@@ -94,13 +93,13 @@ function getBookingInfo(){
             const totalPriceSpan=document.createElement("span");
             totalPriceSpan.innerText="新台幣 " + data.data.price + "元";
             totalPrice.appendChild(totalPriceSpan);
-
         }
     })
     .catch((error)=>{
         console.error(error);
     })
 }
+
 
 //刪除預定行程
 function deleteBooking(){
@@ -131,4 +130,80 @@ function scrollFunction(){
 function topFunction(){
   document.body.scrollTop=0; // For Safari
   document.documentElement.scrollTop=0; // For Chrome, Firefox, IE and Opera
+}
+
+//聯絡資訊輸入驗證
+const phoneNumberRegex=/^09[0-9]{8}$/;
+const orderContactName=document.querySelector(".contact-name");
+const orderContactEmail=document.querySelector(".contact-email");
+const orderContactPhoneNumber=document.querySelector(".contact-phone-number");
+
+function checkOrderContactName(){
+    let ContactNameCheck=false;
+    const ContactNameValue=orderContactName.value.trim();
+    if (ContactNameValue===""){
+        setErrorForOrder(orderContactName, "姓名不得為空白");
+    }else if(ContactNameValue.length<3 || ContactNameValue.length>10){
+        setErrorForOrder(orderContactName, "長度須介於3~10個字"); 
+    }else{
+        setSuccessForOrder(orderContactName);
+        ContactNameCheck=true;
+        return ContactNameCheck
+    }
+}
+orderContactName.addEventListener("blur", checkOrderContactName)
+orderContactName.addEventListener("focus", resetCheck)
+
+function checkOrderContactEmail(){
+    let ContactEmailCheck=false;
+    const ContactEmailValue=orderContactEmail.value.trim();
+    if (ContactEmailValue===""){
+        setErrorForOrder(orderContactEmail, "Email不得為空白");
+    }else if(ContactEmailValue.match(EmailRegex)===null){
+        setErrorForOrder(orderContactEmail, "請填寫正確的Email格式：trip123@example.com");
+    }else{
+        setSuccessForOrder(orderContactEmail);
+        ContactEmailCheck=true;
+        return ContactEmailCheck
+    }
+}
+orderContactEmail.addEventListener("blur", checkOrderContactEmail)
+orderContactEmail.addEventListener("focus", resetCheck)
+
+
+function checkOrderContactPhoneNumber(){
+    let ContactPhoneNumberCheck=false;
+    const ContactPhoneNumberValue=orderContactPhoneNumber.value.trim();
+    if (ContactPhoneNumberValue===""){
+        setErrorForOrder(orderContactPhoneNumber, "手機號碼不得為空白");
+    }else if(ContactPhoneNumberValue.match(phoneNumberRegex)===null){
+        setErrorForOrder(orderContactPhoneNumber, "須為09開頭，長度須小於10字，例:0912345678");
+    }else{
+        setSuccessForOrder(orderContactPhoneNumber);
+        ContactPhoneNumberCheck=true;
+        return ContactPhoneNumberCheck
+    }
+}
+orderContactPhoneNumber.addEventListener("blur", checkOrderContactPhoneNumber)
+orderContactPhoneNumber.addEventListener("focus", resetCheck)
+
+function setErrorForOrder(input, message){
+    let formControl=input.parentElement; // .form-list
+    let small=formControl.querySelector("small");
+    small.innerText=message;
+    formControl.className="form-list error";
+}
+
+function setSuccessForOrder(input){
+    let formControl=input.parentElement;
+    formControl.className="form-list success";
+}
+
+function resetCheck(){
+    let formControl=this.parentElement;
+    let small=formControl.querySelector("small");
+    if (formControl.classList.contains("error")){
+        formControl.classList.remove("error");
+        small.innerHTML="";
+    }
 }

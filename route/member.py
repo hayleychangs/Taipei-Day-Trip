@@ -1,6 +1,7 @@
 from flask import *
 import json
 import jwt
+import re
 from model.member_model import check_email, insert_signupinfo, check_signin
 from data import settings
 
@@ -19,6 +20,20 @@ def api_user():
             email_check=request_data["email"]
             new_password=request_data["password"]
             email_check_result=check_email(email_check)
+            
+            email_regex_check_result=email_regex_check(email_check)
+            
+            if new_name=="" or email_check=="" or new_password=="":
+                signup_failed=True
+                signup_failed_msg="Please fill out all required fields(name, email, password)."
+                error_response=make_response(jsonify({"error":signup_failed, "message":signup_failed_msg}), 400)
+                return error_response
+            elif not new_name.isalnum() or email_regex_check_result==False or not new_password.isalnum():
+                signup_failed=True
+                signup_failed_msg="Please make sure all fields(name, email, password) are filled in correctly."
+                error_response=make_response(jsonify({"error":signup_failed, "message":signup_failed_msg}), 400)
+                return error_response
+            
             if email_check_result==[] and new_name!="" and email_check!="" and new_password!="":
                 insert_result=insert_signupinfo(new_name, email_check, new_password)
                 if insert_result==True:
@@ -122,7 +137,13 @@ def verify_jwt_token(token):
         return False        
        
             
-                    
+#email check
+email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+def email_regex_check(email):
+    if(re.fullmatch(email_regex, email)):
+        return True
+    else:
+        return False                  
                     
 
 

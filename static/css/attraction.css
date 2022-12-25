@@ -211,6 +211,7 @@ a{
     margin-bottom: 10px;
     padding-left: 10px;
     color: var(--Gray);
+    position: relative;
 }
 .pick-date input[type="date"]{
     width: 160px;
@@ -219,6 +220,13 @@ a{
     border: none;
     outline: none;
     cursor: pointer;
+}
+.date-error-msg{
+    font-size: 14px;
+    color: red;
+    position: absolute;
+    top: 4px;
+    left: 270px;
 }
 .pick-time{
     width: 93.3%;

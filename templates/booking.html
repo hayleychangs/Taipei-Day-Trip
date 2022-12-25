@@ -36,47 +36,59 @@
             </div>
             <hr>
             <div class="contact-form">
-                <div class="form-title">您的聯絡資訊</div>
+                <div class="form-title-box">
+                    <div class="form-title">您的聯絡資訊</div>
+                    <span class="contact-error-notice">  *請輸入正確聯絡資訊</span>
+                </div>
                 <div class="form-list">
                     <span>聯絡姓名：</span>
                     <input class="contact-name" type="text" required/>
+                    <small>Error message</small>
                 </div>
                 <div class="form-list">
                     <span>聯絡信箱：</span>
                     <input class="contact-email" type="email" required/>
+                    <small>Error message</small>
                 </div>
                 <div class="form-list">
                     <span>手機號碼：</span>
-                    <input class="contact-phone-number" type="number" required/>
+                    <input class="contact-phone-number" type="text" required/>
+                    <small>Error message</small>
                 </div>
                 <div class="form-warning-msg">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
             </div>
             <hr>
             <div class="payment-form">
-                <div class="form-title">信用卡付款資訊</div>
-                <div class="form-list">
-                    <span>卡片號碼：</span>
-                    <input class="credit-card-number" type="text" placeholder="**** **** **** ****" onfocus="this.placeholder=''" onblur="this.placeholder='**** **** **** ****'" required/>
+                <div class="form-title-box">
+                    <div class="form-title" id="card-title">信用卡付款資訊</div>
+                    <span class="card-error-notice">  *請輸入正確信用卡資訊</span>
                 </div>
-                <div class="form-list">
-                    <span>過期時間：</span>
-                    <input class="credit-card-expire-date" type="text" placeholder="MM / YY" onfocus="this.placeholder=''" onblur="this.placeholder='MM / YY'" required/>
+                <div class="form-box">
+                    <span class="form-subtitle">卡片號碼：</span>
+                    <div class="tpfield" id="card-number"></div>
                 </div>
-                <div class="form-list">
-                    <span>驗證密碼：</span>
-                    <input class="credit-card-cvv" type="text" placeholder="CVV" onfocus="this.placeholder=''" onblur="this.placeholder='CVV'" required/>
+                <div class="form-box">
+                    <span class="form-subtitle">過期時間：</span>
+                    <div class="tpfield" id="card-expiration-date"></div>
+                </div>
+                <div class="form-box">
+                    <span class="form-subtitle">驗證密碼：</span>
+                    <div class="tpfield" id="card-ccv"></div>
                 </div>
             </div>
             <hr>
-            <div class="confirm-box">
+            <div class="submit-box">
                 <div class="total-price">
                     <span>總價：</span>
                 </div>
-                <button class="confirm-btn">確認訂購並付款</button>
+                <button class="submit-btn">確認訂購並付款</button>
             </div>
         </div>
     {% endblock section %}
 
     {% block js %}
+        <script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
+        <script type="text/javascript" src="/static/js/config.js"></script>
         <script type="text/javascript" src="/static/js/booking.js"></script>
+        <script type="text/javascript" src="/static/js/tappay.js"></script>
     {% endblock js %}
