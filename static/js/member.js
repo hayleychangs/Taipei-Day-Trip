@@ -1,6 +1,5 @@
 const showBookingPage=document.getElementById("show-booking-page");
 const ShowSignIn=document.getElementById("show-sign-in");
-const popUp=document.querySelector(".popup");
 const hrefCurrent=location.href;
 
 const signIn=document.querySelector(".signin-box");
@@ -25,10 +24,16 @@ const signUpMsgBox=document.getElementById("signup-msg");
 const formElement=document.querySelectorAll(".form-element");
 const backgroundCover=document.querySelector(".backgroundcover");
 
+const eyeForSignIn=document.getElementById("eye-signin");
+const eyeForSignUp=document.getElementById("eye-signup");
+
+
 // 會員登入畫面
 function show_hide(){
     if(signIn.style.display==="none"){
         signIn.style.display="block";
+        signIn.classList.add("is-active");
+
         signInEmail.value="";
         signInPassword.value="";
         signUp.style.display="none";
@@ -37,11 +42,16 @@ function show_hide(){
             formElement[i].className="form-element";
         }
     }else{
+        
+        signIn.classList.remove("is-active");
         signIn.style.display="none";
+
         backgroundCover.style.display="none";
+
         signUp.style.display="block";
+        signUp.classList.add("is-active")
+
         backgroundCover.style.display="block";
-        // signUp.style.visibility="visible";
      
         signUpName.value="";
         signUpEmail.value="";
@@ -55,8 +65,8 @@ function show_hide(){
 
 ShowSignIn.addEventListener("click", function(){
     if (ShowSignIn.innerHTML==="登入/註冊"){
-        popUp.classList.add("active");
         signIn.style.display="block";
+        signIn.classList.add("is-active");
         backgroundCover.style.display="block";
     }
 });
@@ -70,8 +80,7 @@ SignInCloseIcon.addEventListener("click", function(){
         formElement[i].className="form-element";
     }
 
-    popUp.classList.remove("active");
-    signIn.style.display="none";
+    signIn.classList.remove("is-active");
     backgroundCover.style.display="none";
 });
 
@@ -84,11 +93,8 @@ SignUpCloseIcon.addEventListener("click", function(){
     for( let i=0;i<formElement.length;i++){
         formElement[i].className="form-element";
     }
-
-    popUp.classList.remove("active");
-    // signIn.style.display="block";
-    signUp.style.display="none";
-    // signUp.style.visibility="hidden";
+   
+    signUp.classList.remove("is-active")
     backgroundCover.style.display="none";
 });
 
@@ -104,6 +110,7 @@ backgroundCover.addEventListener("click", function(){
     signInPassword.value="";
     
     if (signUp.style.display=="block"){
+
         for( let i=0;i<formElement.length;i++){
             formElement[i].className="form-element";
         }
@@ -114,10 +121,9 @@ backgroundCover.addEventListener("click", function(){
         signUpPassword.value="";
     }
 
-    popUp.classList.remove("active");
-    signIn.style.display="block";
-    signUp.style.display="none";
-    // signUp.style.visibility="hidden";
+    signIn.classList.remove("is-active");
+    signUp.classList.remove("is-active")
+  
     backgroundCover.style.display="none";
 });
 
@@ -145,7 +151,7 @@ function signUpSubmit(){
     const signUpEmailValue=signUpEmail.value;
     const signUpPasswordValue=signUpPassword.value;
     if (signUpNameValue.length!=0 && signUpEmailValue.length!=0 && signUpPasswordValue.length!=0){
-        let src="/api/user";
+        const src="/api/user";
         fetch(src, {
             method: "POST",
             body: JSON.stringify({
@@ -167,10 +173,24 @@ function signUpSubmit(){
                 }
 
                 signUpMsgClear();
-                let successedContent=document.createTextNode("您好，會員已註冊成功，請重新登入!");
+                const successedContent=document.createTextNode("您好，會員已註冊成功，請重新登入!");
                 signUpMsgBox.setAttribute("class", "signup-successed")
                 signUpMsgBox.appendChild(successedContent);
                 signUpMsgBox.style.display="block";
+
+                //跳回首頁
+                setTimeout(function(){
+                    signUpName.value="";
+                    signUpEmail.value="";
+                    signUpPassword.value="";
+
+                    signUpMsgBox.style.display="none";
+
+                    signUp.classList.remove("is-active")
+                    backgroundCover.style.display="none";
+                }, 1500);
+                
+
             }else{
                 if (data.message==="Email already exists."){
 
@@ -179,7 +199,7 @@ function signUpSubmit(){
                     }
 
                     signUpMsgClear();
-                    let emailExistsMsg=document.createTextNode("抱歉，您輸入的Email已被註冊！");
+                    const emailExistsMsg=document.createTextNode("抱歉，您輸入的Email已被註冊！");
                     signUpMsgBox.setAttribute("class", "signup-failed");
                     signUpMsgBox.appendChild(emailExistsMsg);
                     signUpMsgBox.style.display="block";
@@ -190,7 +210,7 @@ function signUpSubmit(){
                     }
                     
                     signUpMsgClear();
-                    let inputErrorMsg=document.createTextNode("請輸入完整的註冊資訊！");
+                    const inputErrorMsg=document.createTextNode("請輸入完整的註冊資訊！");
                     signUpMsgBox.setAttribute("class", "signup-failed");
                     signUpMsgBox.appendChild(inputErrorMsg);
                     signUpMsgBox.style.display="block";
@@ -201,7 +221,7 @@ function signUpSubmit(){
                     }
 
                     signUpMsgClear();
-                    let inputErrorMsg=document.createTextNode("請輸入正確格式！");
+                    const inputErrorMsg=document.createTextNode("請輸入正確格式！");
                     signUpMsgBox.setAttribute("class", "signup-failed");
                     signUpMsgBox.appendChild(inputErrorMsg);
                     signUpMsgBox.style.display="block";
@@ -213,7 +233,7 @@ function signUpSubmit(){
                     }
 
                     signUpMsgClear();
-                    let failedContent=document.createTextNode("註冊失敗！");
+                    const failedContent=document.createTextNode("註冊失敗！");
                     signUpMsgBox.setAttribute("class", "signup-failed")
                     signUpMsgBox.appendChild(failedContent);
                     signUpMsgBox.style.display="block";
@@ -244,7 +264,7 @@ function signInSubmit(){
     const signInEmailValue=signInEmail.value;
     const signInPasswordValue=signInPassword.value;
     if (signInEmailValue.length!=0 && signInPasswordValue.length!=0){
-        let src="/api/user/auth";
+        const src="/api/user/auth";
         fetch(src, {
             method: "PUT",
             body: JSON.stringify({
@@ -258,8 +278,12 @@ function signInSubmit(){
         .then(response=>response.json())
         .then((data)=>{
             if (data.ok===true){
+                for( let i=0;i<formElement.length;i++){
+                    formElement[i].className="form-element";
+                }
+
                 signInMsgClear();
-                let signInSuccessedContent=document.createTextNode("登入成功！");
+                const signInSuccessedContent=document.createTextNode("登入成功！");
                 signInMsgBox.setAttribute("class", "signin-successed")
                 signInMsgBox.appendChild(signInSuccessedContent);
                 signInMsgBox.style.display="block";
@@ -272,7 +296,7 @@ function signInSubmit(){
                     }
 
                     signInMsgClear();
-                    let incorrectInputMsg=document.createTextNode("請輸入正確的Email及密碼！");
+                    const incorrectInputMsg=document.createTextNode("請輸入正確的Email及密碼！");
                     signInMsgBox.setAttribute("class", "signin-failed");
                     signInMsgBox.appendChild(incorrectInputMsg);
                     signInMsgBox.style.display="block";
@@ -283,7 +307,7 @@ function signInSubmit(){
                     }
 
                     signInMsgClear();
-                    let incorrectInputMsg=document.createTextNode("請輸入正確的Email！");
+                    const incorrectInputMsg=document.createTextNode("請輸入正確的Email！");
                     signInMsgBox.setAttribute("class", "signin-failed");
                     signInMsgBox.appendChild(incorrectInputMsg);
                     signInMsgBox.style.display="block";
@@ -294,7 +318,7 @@ function signInSubmit(){
                     }
 
                     signInMsgClear();
-                    let incorrectPasswordMsg=document.createTextNode("請輸入正確的密碼！");
+                    const incorrectPasswordMsg=document.createTextNode("請輸入正確的密碼！");
                     signInMsgBox.setAttribute("class", "signin-failed");
                     signInMsgBox.appendChild(incorrectPasswordMsg);
                     signInMsgBox.style.display="block";
@@ -307,7 +331,7 @@ function signInSubmit(){
         })
     }else{
         signInMsgClear();
-        let errorContent=document.createTextNode("請輸入正確格式");
+        const errorContent=document.createTextNode("請輸入正確格式");
         signInMsgBox.setAttribute("class", "signin-failed")
         signInMsgBox.appendChild(errorContent);
         signInMsgBox.style.display="block";
@@ -326,7 +350,7 @@ function redirect(){
 
 //檢查登入狀態
 function signInStatusCheck(){
-    let src="/api/user/auth";
+    const src="/api/user/auth";
     let request=new XMLHttpRequest();
     request.open("GET", src, true);;
     request.send();
@@ -518,8 +542,8 @@ function afterCheck(){
     if (signInStatus===true){
         redirectToBooking();
     }else{
-        popUp.classList.add("active");
         signIn.style.display="block";
+        signIn.classList.add("is-active");
         backgroundCover.style.display="block";
     }
 }
@@ -530,3 +554,30 @@ function redirectToBooking(){
 }
 
 showBookingPage.addEventListener("click", afterCheck);
+
+//password eyes
+let flagForSignIn=0;
+eyeForSignIn.onclick=function(){
+    if (flagForSignIn==0){
+        signInPassword.type="text";
+        eyeForSignIn.src ="/static/icon/eye.png";
+        flagForSignIn=1;
+    } else{
+        signInPassword.type="password";
+        eyeForSignIn.src="/static/icon/eyeclose.png";
+        flagForSignIn=0;
+    }
+}
+
+let flagForSignUp=0;
+eyeForSignUp.onclick=function(){
+    if (flagForSignUp==0){
+        signUpPassword.type="text";
+        eyeForSignUp.src ="/static/icon/eye.png";
+        flagForSignUp=1;
+    } else{
+        signUpPassword.type="password";
+        eyeForSignUp.src="/static/icon/eyeclose.png";
+        flagForSignUp=0;
+    }
+}

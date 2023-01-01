@@ -112,7 +112,7 @@ a{
 .dots{
     width: 100%;
     position: relative;
-    bottom: 20px;
+    bottom: 28px;
     display: flex;
     justify-content: center;
     opacity: 0.4;
@@ -622,9 +622,9 @@ hr{
         margin-top: 10px;
     }
     .booking-btn{
-        width: 110px;
+        width: 100px;
         height: 26px;
-        font-size: 16px;
+        font-size: 12px;
     }
     hr{
         width: 90%;

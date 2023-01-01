@@ -151,6 +151,8 @@ function newOrder(orderData, prime){
         signIn.style.display="block";
         backgroundCover.style.display="block";
     }else{
+        const payInfo=document.querySelector(".pay-info");
+        payInfo.style.display="block";
         const orderPrime=prime;
         const orderPrice=orderData.price;
         const orderAttractionId=orderData.attraction.id;

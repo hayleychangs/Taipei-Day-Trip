@@ -1,5 +1,6 @@
 from flask import jsonify, Flask,  request, render_template, redirect, session, url_for,  make_response, Blueprint
 from flask_cors import CORS
+import secrets
 from route.attraction import attraction_api
 from route.member import member_api
 from route.booking import booking_api
@@ -13,6 +14,9 @@ app=Flask(
 
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+
+key=secrets.token_urlsafe(16)
+app.secret_key="key"
 
 CORS(app)
 
@@ -29,6 +33,10 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+
+@app.route("/member")
+def member():
+	return render_template("member.html")
 
 app.register_blueprint(attraction_api)
 app.register_blueprint(member_api)

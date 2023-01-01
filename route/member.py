@@ -143,8 +143,4 @@ def email_regex_check(email):
     if(re.fullmatch(email_regex, email)):
         return True
     else:
-        return False                  
-                    
-
-
-             
+        return False                             

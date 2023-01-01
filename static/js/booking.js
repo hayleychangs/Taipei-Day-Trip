@@ -52,6 +52,7 @@ function getBookingInfo(){
         }
         if (data.data===null){
             bookingBox.innerHTML="";
+            bookingBox.style.visibility="visible";
             errorMsg=`
                 <div class="error-msg-box">
                     <div class="error-msg">您目前沒有預訂的行程</div>
@@ -60,6 +61,7 @@ function getBookingInfo(){
             `
             bookingBox.insertAdjacentHTML("afterbegin", errorMsg)
         }else{
+            bookingBox.style.visibility="visible";
             const img=document.createElement("img");
             img.className="booking-img";
             img.src=data.data.attraction.image;
