@@ -129,9 +129,13 @@ header{
     background-color: var(--Dark-Cyan);
     cursor: pointer;
     padding: 0;
+    -webkit-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 250ms cubic-bezier(.02, .01, .47, 1);
 }
 #search-btn:hover{
-    background-color: var(--Cyan);
+    box-shadow: 0 5px 5px 0 rgba(48, 55, 66, 0.15);
+    transform: translate(0,-1px);
+    transition-delay: 0s !important;
 }
 .magnifier{
     width: auto;
@@ -219,6 +223,9 @@ header{
     border-style: solid;
     border-width:0.01mm;
     border-color: var(--light-Gray);
+}
+.attraction:hover{
+    transform: scale(1.03);
 }
 .attraction a{
     width: 100%;

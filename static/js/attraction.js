@@ -243,8 +243,8 @@ function newBooking(){
     const src="/api/booking";
 
     if (signInStatus==false){
-        popUp.classList.add("active");
         signIn.style.display="block";
+        signIn.classList.add("is-active");
         backgroundCover.style.display="block";
     }
     
