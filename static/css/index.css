@@ -26,8 +26,9 @@ a{
     margin:0 auto;
 }
 header{
+    width: 100%;
     height: 54px;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 50;
     background-color:var(--White);
@@ -75,7 +76,7 @@ header{
 .banner{
     width: 1200px;
     height: 169px;
-    margin: auto;
+    margin: 0 auto;
     position: relative;
     top:75px;
     z-index: 1;
@@ -106,31 +107,48 @@ header{
 }
 .search-bar .input input{
     width: 400px;
-    height: 44px;
+    height: 46px;
     font-size: 16px;
     font-weight:bolder;
     border-style: none;
     border-radius: 5px 0px 0px 5px;
     color: var(--Black);
     outline: none;
-    padding-left: 10px;
+    padding:0 0 0 10px;
 }
 ::placeholder{
     padding-left: 2px;
     color: var(--Gray);
 }
 #search-btn{
+    box-sizing: border-box;
     width: 60px;
-    height: 100%;
+    height: 46px;
     border-style: none;
     border-radius: 0px 5px 5px 0px;
     background-color: var(--Dark-Cyan);
     cursor: pointer;
+    padding: 0;
+}
+#search-btn:hover{
+    background-color: var(--Cyan);
+    box-shadow: 0 5px 5px 0 rgba(48, 55, 66, 0.15);
 }
 .magnifier{
-    width: 60%;
-    height: 60%;
+    width: auto;
+    height: auto;
     object-fit: cover;
+    margin-top: 3px;
+}
+.magnifier:hover{
+    animation: swing 1s 1;
+}
+@keyframes swing{
+    15%{transform: translateX(4px);}
+    40%{transform: translateX(-4px);}
+    65%{transform: translateX(2px);}
+    85%{transform: translateX(-2px);}
+    100%{transform: translateX(0px);}
 }
 .welcome-img-container{
     width: 100%;
@@ -144,10 +162,10 @@ header{
     object-fit: cover;
 }
 .categories-menu{
-    width: 405px;
+    width: 410px;
     height: 120px;
     position: relative;
-    top: 2px;
+    top: 5px;
     align-items: center;
     color: var(--Black);
     background-color: var(--White);
@@ -157,6 +175,9 @@ header{
     flex-direction: row;
     flex-wrap: wrap;
     visibility: hidden;
+    transition: 0.5s;
+    opacity: 0;
+    transition: opacity .5s ease-out;
 }
 .category-item{
     width: 90px;
@@ -170,34 +191,38 @@ header{
 }
 .show{
     visibility: visible;
+    opacity: 1;
 }
 .section-attractions{
     box-sizing: border-box;
     width: 1200px;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items:center;
-    margin: auto;
-    margin-top: 50px;
+    justify-content: flex-start;
+    margin: 50px auto 0 auto;
 }
 .section-attractions a{
     width: 270px;
     height: 242px;
-    margin: auto;
+    margin-left: 10px;
+    margin-right: 20px;
     margin-bottom: 30px;
     position: relative;
 }
 .attraction{
     width: 270px;
     height: 242px;
-    margin: auto;
+    margin-left: 10px;
+    margin-right: 20px;
     margin-bottom: 30px;
     position: relative;
     border-radius: 5px;
     border-style: solid;
     border-width:0.01mm;
     border-color: var(--light-Gray);
+}
+.attraction:hover{
+    transform: scale(1.03);
 }
 .attraction a{
     width: 100%;
@@ -206,12 +231,20 @@ header{
 }
 .img-container{
     width: 100%;
-    height: 100%;
+    height: 197px;
+    overflow: hidden;
 }
 .attraction-img{
     width: 100%;
-    height: 197px;
+    height: 100%;
     object-fit: cover;
+    opacity: 0.9;
+    transform: scale(1);
+}
+.attraction-img:hover{
+    opacity: 1;
+    transform:scale(1.3,1.3);
+    transition: all 1s ease;
 }
 .attraction-name{
     box-sizing: border-box;
@@ -226,7 +259,7 @@ header{
     opacity: 0.7;
     position: relative;
     padding-left: 10px;
-    bottom: 85px;
+    bottom: 40px;
 }
 .attraction-info{
     display: inline;
@@ -238,7 +271,7 @@ header{
     flex-direction: row;
     color: var(--Gray);
     position: relative;
-    bottom: 85px;
+    bottom: 40px;
 }
 .attraction-mrt{
     margin-left: 10px;
@@ -309,10 +342,13 @@ header{
     .section-attractions a{
         width: 90%;
         height: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
     .attraction{
         width: 90%;
-        height: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
     .attraction-img{
         display: block;
@@ -362,16 +398,12 @@ header{
     ::placeholder{
         padding-left: 0px;
     }
-    #search-btn{
-        margin-left:12px;
-        width: 60px;
-        height: 100%;
-    }
-    .magnifier{
-        object-fit: cover;
-    }
     .categories-menu{
-        width: 322px;
+        width: 78%;
+        height: 105%;
+    }
+    .category-item{
+        margin-top: 5px;
     }
     .section-attractions{
         width: 90%;
@@ -383,10 +415,13 @@ header{
     .section-attractions a{
         width: 322px;
         height: 280px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .attraction{
         width: 322px;
-        height: 280px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .attraction-img{
         display: block;

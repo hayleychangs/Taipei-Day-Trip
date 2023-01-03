@@ -1,8 +1,8 @@
-let path=location.pathname;
-let id=path.split("/")[2];
-let imgAndProfile=document.querySelector(".img-and-proflie");
-let attractionInfos=document.querySelector(".attraction-infos");
-let hr=document.querySelector(".hr");
+const path=location.pathname;
+const id=path.split("/")[2];
+const imgAndProfile=document.querySelector(".img-and-proflie");
+const attractionInfos=document.querySelector(".attraction-infos");
+const hr=document.querySelector(".hr");
 let slideIndex=1;
 let prevN=0
 
@@ -35,7 +35,7 @@ let getData=()=>{
         }
     })
     .then((data)=>{
-        let attractionInfo=data.data;
+        const attractionInfo=data.data;
         if (attractionInfo!=null){
 
            //展示景點資訊
@@ -50,38 +50,36 @@ let getData=()=>{
 }
 
 function showAttractionInfo(attractionInfo){
-    let attractionName=document.getElementsByClassName("name");
-    let name=attractionInfo["name"];
+    const attractionName=document.getElementsByClassName("name");
+    const name=attractionInfo.name;
     attractionName[0].insertAdjacentText("beforebegin", name);
 
-    let attractionCategory=document.getElementsByClassName("category");
-    let category=attractionInfo["category"]
+    const attractionCategory=document.getElementsByClassName("category");
+    const category=attractionInfo.category;
     attractionCategory[0].insertAdjacentText("beforeend", category);
 
-    let attractionMrt=document.getElementsByClassName("mrt");
-    let mrt=attractionInfo["mrt"]   
+    const attractionMrt=document.getElementsByClassName("mrt");
+    const mrt=attractionInfo.mrt;
     attractionMrt[0].insertAdjacentText("beforeend", mrt);
 
-    let attractionDescription=document.getElementsByClassName("description");
-    let description=attractionInfo["description"];
+    const attractionDescription=document.getElementsByClassName("description");
+    const description=attractionInfo.description;
     attractionDescription[0].insertAdjacentText("beforeend", description);
 
-    let attractionAddress=document.getElementsByClassName("address-content");
-    let address=attractionInfo["address"];
+    const attractionAddress=document.getElementsByClassName("address-content");
+    const address=attractionInfo.address;
     attractionAddress[0].insertAdjacentText("beforeend", address);
 
-    let attractionTransport=document.getElementsByClassName("transport-content");
-    let transport=attractionInfo["transport"];
+    const attractionTransport=document.getElementsByClassName("transport-content");
+    const transport=attractionInfo.transport;
     attractionTransport[0].insertAdjacentText("beforeend", transport);
-
-    let attractionImgs=attractionInfo["images"];
 }
 
 //images&dots
 function showImages(attractionInfo){
-    let attractionImages=attractionInfo["images"];
-    let name=attractionInfo["name"];
-    let dots=document.querySelector(".dots");
+    const attractionImages=attractionInfo.images;
+    const name=attractionInfo.name;
+    const dots=document.querySelector(".dots");
 
     for (i=0,j=1;i<attractionImages.length;i++,j++){
 
@@ -103,7 +101,7 @@ function plusSlides(n){
 }
 
 function changeEffect(){
-    let slides=document.getElementsByClassName("img-container");
+    const slides=document.getElementsByClassName("img-container");
     if (prevN===-1){
         for (i=0;i<slides.length;i++){
             slides[i].classList.remove("go-right");
@@ -147,11 +145,11 @@ function showSlides(n){
 
 //pick time and show guide-fee
 function pickTime(){
-    let pickMorning=document.getElementById("morning");
-    let pickAfternoon=document.getElementById("afternoon");
-    let morningGuideFee="新台幣2000元";
-    let afternoonGuideFee="新台幣2500元";
-    let fee=document.querySelector(".fee");
+    const pickMorning=document.getElementById("morning");
+    const pickAfternoon=document.getElementById("afternoon");
+    const morningGuideFee="新台幣2000元";
+    const afternoonGuideFee="新台幣2500元";
+    const fee=document.querySelector(".fee");
 
     pickMorning.addEventListener("onload",()=>{ 
         fee.innerHTML="";
@@ -172,9 +170,8 @@ pickTime();
 
 //guide fee default
 function guideFeeDefault(){
-    let pickMorning=document.getElementById("morning");
-    let morningGuideFee="新台幣2000元";
-    let fee=document.querySelector(".fee");
+    const morningGuideFee="新台幣2000元";
+    const fee=document.querySelector(".fee");
 
     fee.innerHTML="";
     fee.insertAdjacentText("beforeend", morningGuideFee)
@@ -226,8 +223,18 @@ function stopAutoPlay(){
 
 
 
-let today=new Date().toISOString().split("T")[0];
-document.querySelector(".date").setAttribute("min", today);
+const today=new Date().toISOString().split("T")[0];
+
+const tomorrow = new Date(today)
+tomorrow.setDate(tomorrow.getDate() + 1)
+const tomorrowDate=tomorrow.getFullYear()+"-" + ("0"+(tomorrow.getMonth()+1)).slice(-2) + "-" + ("0"+tomorrow.getDate()).slice(-2);
+const maxDate=tomorrow.getFullYear()+"-" + ("0"+(tomorrow.getMonth()+13)).slice(-2) + "-" + ("0"+tomorrow.getDate()).slice(-2);
+
+const dateInput=document.querySelector(".date");
+dateInput.setAttribute("min", tomorrowDate);
+dateInput.setAttribute("max", maxDate);
+dateInput.setAttribute("value", tomorrowDate);
+
 let dateCheck;
 let priceValue;
 const dateErrorMsg=document.querySelector(".date-error-msg");
@@ -236,18 +243,25 @@ function newBooking(){
     const src="/api/booking";
 
     if (signInStatus==false){
-        popUp.classList.add("active");
         signIn.style.display="block";
+        signIn.classList.add("is-active");
         backgroundCover.style.display="block";
     }
     
-    const dateInput=document.querySelector(".date").value;
+    let dateInputValue=dateInput.value;
     const timeInput=document.querySelector("input[name='time']:checked").value;
 
-    if (signInStatus==true&&dateInput==""){
+    if (signInStatus==true&&dateInputValue==""){
         dateErrorMsg.innerText=" 請選擇日期！";
         dateErrorMsg.style.display="block";
-        // date-input css設定紅框
+        dateCheck=false;
+    }else if (dateInputValue<tomorrowDate){
+        dateErrorMsg.innerText=" 請輸入2023/01/02或之後的日期！";
+        dateErrorMsg.style.display="block";
+        dateCheck=false;
+    }else if (dateInputValue>maxDate){
+        dateErrorMsg.innerText=" 請輸入近一年內的日期！";
+        dateErrorMsg.style.display="block";
         dateCheck=false;
     }else{
         dateErrorMsg.style.display="none";
@@ -259,7 +273,6 @@ function newBooking(){
     }else{
         priceValue=Number(2500);
     }
-    console.log(priceValue)
 
     if (signInStatus==true&&dateCheck==true){
         const src="/api/booking";
@@ -267,7 +280,7 @@ function newBooking(){
             method:"POST",
             body: JSON.stringify({
                 "attractionId": id,
-                "date": dateInput,
+                "date": dateInputValue,
                 "time": timeInput,
                 "price": priceValue
             }),

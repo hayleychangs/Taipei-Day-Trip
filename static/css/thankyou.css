@@ -210,10 +210,7 @@ header{
         /*element no break*/
         page-break-inside:avoid;
     }
-    .header-content, .nav-item, .footer-content, .print-btn{
-        display: none;
-    }
-    #go-to-top{
+    header, .header-content, .nav-item, .footer-content, .print-btn, #go-to-top{
         display: none;
     }
 }

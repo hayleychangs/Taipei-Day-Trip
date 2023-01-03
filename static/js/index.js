@@ -8,51 +8,51 @@ let keyword=document.getElementById("keyword").value;
 
 function createAttractions(attractionInfo){
     for (let i=0,j=1;i<attractionInfo.length;i++){
-        let attractionName=attractionInfo[i]["name"];
-        let attractionMrt=attractionInfo[i]["mrt"];
-        let attractionCategory=attractionInfo[i]["category"];
-        let attractionImage=attractionInfo[i]["images"][0];
+        const attractionName=attractionInfo[i].name;
+        const attractionMrt=attractionInfo[i].mrt;
+        const attractionCategory=attractionInfo[i].category;
+        const attractionImage=attractionInfo[i].images[0];
      
 
-        let aTag=document.createElement("a");
-            aTag.href=`/attraction/${attractionInfo[i]["id"]}`;
+        const aTag=document.createElement("a");
+            aTag.href=`/attraction/${attractionInfo[i].id}`;
             document.querySelector(".section-attractions").appendChild(aTag);
 
-        let attractionBox=document.createElement("div");
+        const attractionBox=document.createElement("div");
             attractionBox.className="attraction";       
         
-        let imgDiv=document.createElement("div");
+        const imgDiv=document.createElement("div");
             imgDiv.className="img-container";        
 
-        let image=document.createElement("img");
+        const image=document.createElement("img");
             image.className="attraction-img";
             image.src=attractionImage;
             image.alt=attractionName;
             image.title=attractionName;
 
-        let nameDiv=document.createElement("div");
+        const nameDiv=document.createElement("div");
             nameDiv.className="attraction-name";
 
-        let nameContent=document.createTextNode(attractionName);
+        const nameContent=document.createTextNode(attractionName);
 
-        let infoDiv=document.createElement("div");
+        const infoDiv=document.createElement("div");
             infoDiv.className="attraction-info";
 
-        let mrtDiv=document.createElement("div");
+        const mrtDiv=document.createElement("div");
             mrtDiv.className="attraction-mrt";
 
         if (attractionMrt!=null){    
-            let mrtContent=document.createTextNode(attractionMrt);
+            const mrtContent=document.createTextNode(attractionMrt);
             mrtDiv.appendChild(mrtContent);
         }else{
-            let mrtContent=document.createTextNode("無捷運站");
+            const mrtContent=document.createTextNode("無捷運站");
             mrtDiv.appendChild(mrtContent);
         }
 
-        let categoryDiv=document.createElement("div");
+        const categoryDiv=document.createElement("div");
             categoryDiv.className="attraction-category";  
 
-        let categoryContent=document.createTextNode(attractionCategory);
+        const categoryContent=document.createTextNode(attractionCategory);
 
             
         categoryDiv.appendChild(categoryContent);
@@ -78,13 +78,13 @@ let getData=()=>{
         }
     })
     .then((data)=>{
-        let attractionInfo=data["data"];
+        const attractionInfo=data.data;
         if (attractionInfo!=null){
 
            //建立景點
            createAttractions(attractionInfo);
 
-           nextPage=data["nextPage"];
+           nextPage=data.nextPage;
 
            //取得景點後開始觀察
            InfinitescrollObserver.observe(scrollTarget);
@@ -95,7 +95,7 @@ let getData=()=>{
     })
 }
 
-let goSearch=document.getElementById("search-btn");
+const goSearch=document.getElementById("search-btn");
 goSearch.addEventListener("click", ()=>{
     keyword=document.getElementById("keyword").value;
     nextPage=0;
@@ -133,10 +133,10 @@ function callback(entries) {
             InfinitescrollObserver.unobserve(scrollTarget);
 
             //載入下一頁景點
-            let attractionInfo=data["data"];
+            const attractionInfo=data.data;
             createAttractions(attractionInfo);
 
-            nextPage=data["nextPage"];
+            nextPage=data.nextPage;
         })
         .then(()=>{
             if(nextPage!=null){
@@ -164,20 +164,20 @@ let getDataByKeyword=()=>{
         }
     })
     .then((data)=>{
-        let attractionInfo=data["data"];
+        const attractionInfo=data.data;
         if (attractionInfo.length!=0){
             attractionsClear();
             createAttractions(attractionInfo);
-            nextPage=data["nextPage"];
+            nextPage=data.nextPage;
             
             //開始觀察
             InfinitescrollObserver.observe(scrollTarget);
         }else{
             attractionsClear();
-            let newDiv=document.createElement("div");
+            const newDiv=document.createElement("div");
                 newDiv.className="error-msg";
                 newDiv.id="error-msg";
-                let errorContent=document.createTextNode("查無結果，請重新輸入");
+                const errorContent=document.createTextNode("查無結果，請重新輸入");
                 newDiv.appendChild(errorContent);
                 document.querySelector(".section-attractions").appendChild(newDiv);
         }
@@ -189,13 +189,13 @@ let getDataByKeyword=()=>{
 
 //清空景點
 let attractionsClear=()=>{
-    let element=document.getElementById("section-attractions");
+    const element=document.getElementById("section-attractions");
     element.innerHTML="";
 }
 
 //取得分類
 function getCategories(){
-    let src=`/api/categories`;
+    const src=`/api/categories`;
     fetch(src).then((response)=>{
         if(!response.ok){
             throw new Error("response.statusText");
@@ -204,15 +204,15 @@ function getCategories(){
         }
     })
     .then((data)=>{
-        let categories=data["data"];
-        let categoriesBlock=document.getElementById("categories-menu");
+        const categories=data.data;
+        const categoriesBlock=document.getElementById("categories-menu");
 
         for (let i=0,j=1;i<=categories.length,j<=categories.length;i++,j++){
-            let categoryDiv=document.createElement("div");
+            const categoryDiv=document.createElement("div");
                 categoryDiv.className="category-item";
                 categoryDiv.id="category-"+j;
 
-            let categoryContent=document.createTextNode(categories[i]);
+            const categoryContent=document.createTextNode(categories[i]);
 
             categoryDiv.appendChild(categoryContent);
             categoriesBlock.appendChild(categoryDiv);
