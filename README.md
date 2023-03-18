@@ -19,7 +19,7 @@ Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing to
   + CVV：`123`
 
 ## Table of Content
-+ [Main Features](#features)
++ [Main Features](#main-features)
     + [Infinite Scroll](#infinite-scroll)
     + [Keyword Search](#keyword-search)
     + [Image Carousel With Auto-Play](#image-carousel-with-auto-play)
