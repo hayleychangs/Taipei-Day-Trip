@@ -37,7 +37,7 @@ Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing to
 + [Database](#database)
     + MySQL
 + [Cloud Service](#cloud-service)
-     + Amazon Web Services(AWS) EC2 (Ubuntu)
+     + Amazon EC2(Ubuntu), Amazon Web Services (AWS) Cloud
 + [Version Control](#version-control)
      + Git
      + Github
@@ -100,7 +100,7 @@ Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing to
         <img src="https://user-images.githubusercontent.com/111417360/224244319-754b6dfa-c42d-4073-b90f-57bfafaf1e0e.png" width= "400" height = "330"/>
 
 ## Cloud Service
-* **Amazon Web Services(AWS) EC2 (Ubuntu)**
+* **Amazon EC2(Ubuntu), Amazon Web Services (AWS) Cloud**
 
 ## Version Control
 * **Git**
