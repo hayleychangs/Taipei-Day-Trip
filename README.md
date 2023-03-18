@@ -79,7 +79,7 @@ Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing to
 * ##### **RWD**
   <p>Create responsive layout using CSS Flexbox.</p>
   </br>
-  <img src="https://user-images.githubusercontent.com/111417360/224335964-50238148-0fdf-4878-987a-52dc0a03e131.png" width= "1100" height = "280"/>
+  <img src="https://user-images.githubusercontent.com/111417360/224335964-50238148-0fdf-4878-987a-52dc0a03e131.png" width= "1100" height = "290"/>
 
 
 
