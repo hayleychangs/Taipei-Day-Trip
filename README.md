@@ -1,6 +1,6 @@
 # Taipei-Day-Trip 台北一日遊網站開發專案
 
-Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing tours in Taipei city, allowing users to browse and book tours at various attractions.
+Taipei-Day-Trip is a e-commerce website which focuses on one-day sightseeing tours in Taipei city, allowing users to browse and book tours at various attractions.
 
 ## DEMO
 <p align="center">
