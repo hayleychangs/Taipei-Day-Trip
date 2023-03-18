@@ -104,7 +104,7 @@ Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing to
 
 ## Version Control
 * **Git**
-* **Github**
+* **GitHub**
 
 ## Contact
 * Yung-Ting, Chang
