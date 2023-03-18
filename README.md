@@ -40,7 +40,7 @@ Taipei-Day-Trip is an e-commerce website which focuses on one-day sightseeing to
      + Amazon EC2(Ubuntu), Amazon Web Services (AWS) Cloud
 + [Version Control](#version-control)
      + Git
-     + Github
+     + GitHub
 + [Contact](#contact)
 
 
