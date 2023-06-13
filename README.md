@@ -7,7 +7,7 @@ Taipei-Day-Trip is a e-commerce website which focuses on one-day sightseeing tou
 <img src="https://user-images.githubusercontent.com/111417360/224295989-e19de897-b8f8-489f-baad-5c46e7ee5d0b.gif" width= "900" height = "500"/>
 </p>
 
-* **Website URL**：[Taipei-Day-Trip](http://54.92.74.234:3000/)
+* **Website URL**：[Taipei-Day-Trip](http://18.177.184.255:3000/)
 
 * **Test Account**：
   + E-mail：`test@test.com `
